@@ -68,8 +68,9 @@ function intersection_calc(parsed_matrix)
     
 end
 
-
-#We parse the txt file into matrix
+#################################################################################################################################################
+###PARSERS####
+#################################################################################################################################################
 function parse_matrix(txt)
     f = open(txt)
     lines = readlines(f)
@@ -108,42 +109,32 @@ function parse_polynomial(txt)
     end
     return old_poly
 end
-
-#A function to convert matrix to rref
-function rref_matrix(matrix)
-    S = MatrixSpace(ZZ,size(matrix)[1],size(matrix)[2])
-    mat = Array{Int}(matrix)
-    flint_mat = S(mat)
-    return rref(flint_mat)
-end
+#################################################################################################################################################
+#################################################################################################################################################
 
 
 
+#################################################################################################################################################
+### Main function to find new polynomial ###
+#################################################################################################################################################
 
-
-#A function to convert between fmpz_mat and Array{Int} formats
-function Base.convert(::Type{Array{Int}}, x::Nemo.fmpz_mat)
-    m,n = size(x)
-    mat = Int[x[i,j] for i = 1:m, j = 1:n]
-    return mat
-end
-
-Base.convert(::Type{Array}, x::Nemo.fmpz_mat) = convert(Array{Int}, x)
-
-#Main function to find new polynomial 
-function polynomial_calc(txt2)
+function polynomial_calc(txt)
     #old_poly = parse_polynomial(txt1)
-    parsed_matrix = parse_matrix(txt2)
+    parsed_matrix = parse_matrix(txt)
     intersect_matrix = intersection_calc(parsed_matrix)
     #We first make new matrix into rref form
     ref_intersect_matrix = merge_sort_aux(intersect_matrix)
 
 
     # Transtion matrix
-    transition_matrix = Array{Int}(cob_matrix_c(parsed_matrix))
- 
-    open(split(txt2, ".txt")[1]*"_bruh1.txt", "w") do io
-        for line in eachrow(a)
+    transition_matrix = find_cob_matrix(parsed_matrix, ref_intersect_matrix)
+    verifier_matrix = Array{Int}(transition_matrix*ref_intersect_matrix)
+    if verifier_matrix == parsed_matrix
+        print("Transition matrix good")
+    end
+
+    open(split(txt, ".txt")[1]*"_trans.txt", "w") do io
+        for line in eachrow(transition_matrix)
             for i in line
                 print(io, i)
                 print(io, " ")
@@ -152,31 +143,14 @@ function polynomial_calc(txt2)
         end
     end
 
-
 end
 
-function cob_matrix_c(matrix)
-    cob_matrix = Array{Rational{Int64}}(zeros(size(matrix)[1], size(matrix)[1]))
-    for row_index in 1:size(matrix)[1]
-        if matrix[row_index, :] == matrix[row_index, :]
-            cob_matrix[row_index,row_index] = 1
-        end
-    end
-    for col_index in 1:size(matrix)[1]
-        cob_matrix[3, col_index] = matrix[col_index, 3]
-    end
-    return cob_matrix
-end
-
-#################################################
-#useless function
+#Calculate transition matrix
 function find_cob_matrix(matrix1, matrix2)
     cob_matrix = Array{Rational{Int64}}(zeros(size(matrix1)[1], size(matrix1)[1]))
     list = []
-    count = []
-    c = 0
-    m = Array{Int64}(zeros(size(matrix1)[1], size(matrix1)[2]))
-
+    count = [0]
+    m = Array{Rational{Int64}}(zeros(size(matrix1)[1], size(matrix1)[2]))
     #if two rows are the same, the change of basis matrix' row is the identity
     for row_index in 1:size(matrix1)[1]
         if matrix1[row_index, :] == matrix2[row_index, :]
@@ -187,30 +161,31 @@ function find_cob_matrix(matrix1, matrix2)
     end
     for l in list
         for col_index in 1:size(matrix1)[2]
-            for row_index in 1:size(matrix1)[1]
-                if row_index in count
-                    break
-                else
-                    if matrix2[row_index, col_index] != 0 && row_index != c
-                        m[row_index, col_index] = cob_matrix[l, col_index] * matrix2[row_index, col_index]
-                        push!(count,row_index)
+            sum = 0
+            if matrix1[last(count)+1, col_index] != 0
+                push!(count,last(count)+1)
+                for row_index in 1:size(matrix1)[1]
+                    if matrix2[row_index, col_index] != 0 && row_index != last(count)
+                        m[row_index, col_index] = cob_matrix[l, row_index] * matrix2[row_index, col_index]
+                        sum += m[row_index, col_index]
                     end
                 end
-            end
-            if c in count
-                break
-            else
-                c += 1
-                total1 = sum([m[row_index, col_index] for row_index in 1:size(matrix1)[1]])
-                print(matrix2[c, col_index])
-                cob_matrix[l, last(count)] = (matrix1[l, col_index] - total1) // matrix2[c, col_index]
+                cob_matrix[l, last(count)] = (matrix1[l, col_index] - sum) // matrix2[last(count), col_index]
             end
         end
     end
     return cob_matrix
 end
-###################################################################################
 
+#################################################################################################################################################
+#################################################################################################################################################
+
+
+
+
+#################################################################################################################################################
+### Merge Sort algorithm to show new variables in reduced echelon form ###
+#################################################################################################################################################
 #To make intersected matrix into ref 
 function merge_sort_aux(matrix)
     if size(matrix)[1] == 1
@@ -268,6 +243,40 @@ function merge_sort(matrix1,matrix2)
     return res_matrix
 end
 
+#################################################################################################################################################
+#################################################################################################################################################
+
+
+
+
+
+#################################################################################################################################################
+#Unused/Not yet used functions
+#################################################################################################################################################
+
+#A function to convert matrix to rref
+function rref_matrix(matrix)
+    S = MatrixSpace(ZZ,size(matrix)[1],size(matrix)[2])
+    mat = Array{Int}(matrix)
+    flint_mat = S(mat)
+    return rref(flint_mat)
+end
+
+macro assert(ex)
+    return :( $ex ? nothing : throw(AssertionError($(string(ex)))) )
+end
+
+#A function to convert between fmpz_mat and Array{Int} formats
+function Base.convert(::Type{Array{Int}}, x::Nemo.fmpz_mat)
+    m,n = size(x)
+    mat = Int[x[i,j] for i = 1:m, j = 1:n]
+    return mat
+end
+
+Base.convert(::Type{Array}, x::Nemo.fmpz_mat) = convert(Array{Int}, x)
+
+
+
 function printer(intersect_matrix,txt)
     open(split(txt, ".txt")[1]*"_out.txt", "w") do io
         for line in eachrow(intersect_matrix)
@@ -303,4 +312,5 @@ if !isdefined(Base, :active_repl)
     main()
 end
 
-
+#################################################################################################################################################
+#################################################################################################################################################
