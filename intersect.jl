@@ -5,6 +5,12 @@ using AbstractAlgebra
 include("parser.jl")
 include("other_functions.jl")
 
+#################################################################################################################################################
+### Function to calculate matrix intersection
+### Input: parsed matrix
+### Output: intersected matrix
+#################################################################################################################################################
+
 function intersection_calc(parsed_matrix)
     row, col = size(parsed_matrix)
     
@@ -86,7 +92,13 @@ function cob_calc(old_txt)
 
     # build rational ring and matrix space
     QQ = FlintQQ
-    R, y = PolynomialRing(QQ, "y")
+
+    variables_str = Array{String}([])
+    for index in 0:size(parsed_matrix)[1]-1
+        push!(variables_str, "y$index")
+    end
+
+    R, y = PolynomialRing(QQ, variables_str)
     S = MatrixSpace(R, size(parsed_matrix)[1], size(parsed_matrix)[2])
 
     # construct fmpq_poly matrices
@@ -97,7 +109,7 @@ function cob_calc(old_txt)
     cob_matrix = solve_left(intersect_matrix, parsed_matrix)
     cob_matrix_inverse = inv(cob_matrix)
 
-    print(cob_matrix_inverse)
+    #print(cob_matrix_inverse)
     return cob_matrix, cob_matrix_inverse
 end
 
@@ -111,10 +123,11 @@ end
 
 function poly_calc(old_txt, old_poly_txt)
 
-    QQ = FlintQQ
-    R, y = PolynomialRing(QQ, "y")
-    S = MatrixSpace(R, size(parsed_matrix)[1], size(parsed_matrix)[2])
-    parsed_matrix = Array{Int}(parse_matrix(old_txt))
+    cob_matrix, cob_matrix_inverse = cob_calc(old_txt)
+    old_poly_system = parse_polynomial(old_poly_txt)
+
+    #We first compute A^-1 y
+    for 
 
 end
 

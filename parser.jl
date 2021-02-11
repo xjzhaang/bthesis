@@ -39,31 +39,91 @@ function parse_polynomial(txt)
     
 
     variables_str = Array{String}([])
-    variables = []
     for index in 0:length(lines)-1
         push!(variables_str, "y$index")
     end
-
-    for index in 1:length(variables_str)
-        #string_as_varname_function(variables_str[index],nothing)
-        push!(variables, Symbol(variables_str[index]))
-    end
-    variables_tuple = Tuple(variables)
-
+    #var_tuple = Tuple(variables_str)
     #Create the PolynomiaL ring
     QQ = FlintQQ
-    R, variables_tuple = PolynomialRing(QQ, variables_str)
+    R, v = PolynomialRing(QQ, variables_str)
     S = MatrixSpace(R, length(lines), length(lines))
-    for line_index in 1:length(lines)
-        a = Meta.parse(lines[line_index])
-        print(eval(a))
-        #@eval $(Symbol(:f, line_index)) = a
+
+    #Create a dictionary sending symbol to v[i]
+    expr_dict = Dict(Symbol("y0") => v[1])
+    for index in 2:length(v)
+        num = index-1
+        expr_dict[Symbol("y$num")] = v[index]
     end
-    #print(f1)
+    
+    poly_system = []
+    for line_index in 1:length(lines)
+        push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
+    end
+    return poly_system
 end
 
-function string_as_varname_function(s::AbstractString, v::Any)
-	s = Symbol(s)
-	@eval (($s) = ($v))
+function myeval(e::Union{Expr,Symbol,Number}, map::Dict{Symbol,fmpq_mpoly})
+    try
+        return f(e, map)
+    catch ex
+        println("Can't parse \"$e\"")
+        rethrow(ex)
+    end
+end 
+
+function f(s::Symbol, map::Dict{Symbol,fmpq_mpoly})
+    if haskey(map, s)
+        return map[s]
+    else
+        throw(UndefVarError(s))
+    end
+end    
+
+# Numbers are converted to type Float64.
+function f(x::Number, map::Dict{Symbol,fmpq_mpoly})
+    return Int(x)
+end    
+
+# To parse an expression, convert the head to a singleton
+# type, so that Julia can dispatch on that type.
+function f(e::Expr, map::Dict{Symbol,fmpq_mpoly})
+    return f(Val(e.head), e.args, map)
 end
 
+# Call the function named in args[1]
+function f(::Val{:call}, args, map::Dict{Symbol,fmpq_mpoly})
+    return f(Val(args[1]), args[2:end], map)
+end
+
+# Addition
+function f(::Val{:+}, args, map::Dict{Symbol,fmpq_mpoly})
+    x = 0
+    for arg ∈ args
+        x += f(arg, map)
+    end
+    return x
+end
+
+# Subtraction and negation
+function f(::Val{:-}, args, map::Dict{Symbol,fmpq_mpoly})
+    len = length(args)
+    if len == 1
+        return -f(args[1], map)
+    else
+        return f(args[1], map) - f(args[2], map)
+    end
+end    
+
+# Multiplication
+function f(::Val{:*}, args, map::Dict{Symbol,fmpq_mpoly})
+    x = 1
+    for arg ∈ args
+        x *= f(arg, map)
+    end
+    return x
+end    
+
+# Division
+function f(::Val{:/}, args, map::Dict{Symbol,fmpq_mpoly})
+    return f(args[1], map) / f(args[2], map)
+end    
