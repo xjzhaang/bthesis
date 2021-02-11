@@ -1,11 +1,13 @@
 using Nemo
 
 function parse_matrix(txt)
+
     f = open(txt)
     lines = readlines(f)
     #first we create a zeros matrix of the correct dimension.
     matrix = zeros(length(lines), length(split(lines[1])))
     matrix = Array{Rational{Int64}}(matrix)
+
     for line_index in 1:length(lines)
         vector = split(lines[line_index])
         for v_index in 1:length(vector)
@@ -36,20 +38,32 @@ function parse_polynomial(txt)
     lines = readlines(f)
     
 
-    variables = Array{String}([])
-    for line_index in 1:length(lines)
-        push!(variables, "y$line_index")
+    variables_str = Array{String}([])
+    variables = []
+    for index in 0:length(lines)-1
+        push!(variables_str, "y$index")
+    end
+
+    for index in 1:length(variables_str)
+        #string_as_varname_function(variables_str[index],nothing)
+        push!(variables, Symbol(variables_str[index]))
     end
     variables_tuple = Tuple(variables)
 
     #Create the PolynomiaL ring
     QQ = FlintQQ
-    R, variables_tuple = PolynomialRing(QQ, variables)
-
+    R, variables_tuple = PolynomialRing(QQ, variables_str)
+    S = MatrixSpace(R, length(lines), length(lines))
     for line_index in 1:length(lines)
-        @eval $(Symbol(:f, line_index)) = eval(Meta.parse(lines[line_index]))
+        a = Meta.parse(lines[line_index])
+        print(eval(a))
+        #@eval $(Symbol(:f, line_index)) = a
     end
-    print(f1)
+    #print(f1)
 end
 
+function string_as_varname_function(s::AbstractString, v::Any)
+	s = Symbol(s)
+	@eval (($s) = ($v))
+end
 
