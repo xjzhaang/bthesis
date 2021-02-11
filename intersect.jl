@@ -1,6 +1,9 @@
 using Polymake
-using LinearAlgebra
 using Nemo
+using AbstractAlgebra
+
+include("parser.jl")
+include("other_functions.jl")
 
 function intersection_calc(parsed_matrix)
     row, col = size(parsed_matrix)
@@ -68,215 +71,61 @@ function intersection_calc(parsed_matrix)
     
 end
 
+
+
 #################################################################################################################################################
-###PARSERS####
+### Function to find change of basis matrix 
+### Input: original macro-variables text (to be changed later)
+### Output: change of basis matrix and its inverse.
 #################################################################################################################################################
-function parse_matrix(txt)
-    f = open(txt)
-    lines = readlines(f)
-    #first we create a zeros matrix of the correct dimension.
-    matrix = zeros(length(lines), length(split(lines[1])))
-    matrix = Array{Rational{Int64}}(matrix)
-    for line_index in 1:length(lines)
-        vector = split(lines[line_index])
-        for v_index in 1:length(vector)
-            max_deminominator = 1
-            # first we check if the element is a fraction, if so we find its numerator and denominator and create a rational to represent it
-            if occursin("/", vector[v_index])
-                numerator = parse(Int,split(vector[v_index], "/")[1])
-                denominator = parse(Int,split(vector[v_index], "/")[2])
-                if denominator > max_deminominator
-                    max_deminominator = denominator
-                end
-                rational = numerator // denominator
-                matrix[line_index, v_index] = rational
-            #if the element is an int, we parse the string to int and add it to the matrix
-            else
-                matrix[line_index, v_index] = parse(Int64, vector[v_index])
-            end
-        end
-    end
-    return matrix
+
+function cob_calc(old_txt)
+    # establish original and new macro-variable matrices (tb changed)
+    parsed_matrix = Array{Int}(parse_matrix(old_txt))
+    intersect_matrix = Array{Int}(intersection_calc(parsed_matrix))
+
+    # build rational ring and matrix space
+    QQ = FlintQQ
+    R, y = PolynomialRing(QQ, "y")
+    S = MatrixSpace(R, size(parsed_matrix)[1], size(parsed_matrix)[2])
+
+    # construct fmpq_poly matrices
+    parsed_matrix = S(parsed_matrix)
+    intersect_matrix = S(intersect_matrix)
+
+    #compute change of basis matrix and its inverse
+    cob_matrix = solve_left(intersect_matrix, parsed_matrix)
+    cob_matrix_inverse = inv(cob_matrix)
+
+    print(cob_matrix_inverse)
+    return cob_matrix, cob_matrix_inverse
 end
 
-#We parse the original polynomials into a dictionary of Expr
-function parse_polynomial(txt)
-    f = open(txt)
-    lines = readlines(f)
-    old_poly = Dict()
-    for line_index in 1:length(lines)
-        old_poly[line_index] = Meta.parse(lines[line_index])
-    end
-    return old_poly
-end
-#################################################################################################################################################
-#################################################################################################################################################
-
 
 
 #################################################################################################################################################
-### Main function to find new polynomial ###
+### Function to find new polynomials
+### Input: original macro-variables text, polynomial text (to be changed later)
+### Output: new polynomial system
 #################################################################################################################################################
 
-function polynomial_calc(txt)
-    #old_poly = parse_polynomial(txt1)
-    parsed_matrix = parse_matrix(txt)
-    intersect_matrix = intersection_calc(parsed_matrix)
-    #We first make new matrix into rref form
-    ref_intersect_matrix = merge_sort_aux(intersect_matrix)
+function poly_calc(old_txt, old_poly_txt)
 
-
-    # Transtion matrix
-    transition_matrix = find_cob_matrix(parsed_matrix, ref_intersect_matrix)
-    verifier_matrix = Array{Int}(transition_matrix*ref_intersect_matrix)
-    if verifier_matrix == parsed_matrix
-        print("Transition matrix good")
-    end
-
-    open(split(txt, ".txt")[1]*"_trans.txt", "w") do io
-        for line in eachrow(transition_matrix)
-            for i in line
-                print(io, i)
-                print(io, " ")
-            end
-            print(io, "\n")
-        end
-    end
+    QQ = FlintQQ
+    R, y = PolynomialRing(QQ, "y")
+    S = MatrixSpace(R, size(parsed_matrix)[1], size(parsed_matrix)[2])
+    parsed_matrix = Array{Int}(parse_matrix(old_txt))
 
 end
 
-#Calculate transition matrix
-function find_cob_matrix(matrix1, matrix2)
-    cob_matrix = Array{Rational{Int64}}(zeros(size(matrix1)[1], size(matrix1)[1]))
-    list = []
-    count = [0]
-    m = Array{Rational{Int64}}(zeros(size(matrix1)[1], size(matrix1)[2]))
-    #if two rows are the same, the change of basis matrix' row is the identity
-    for row_index in 1:size(matrix1)[1]
-        if matrix1[row_index, :] == matrix2[row_index, :]
-            cob_matrix[row_index,row_index] = 1
-        else
-            push!(list,row_index)
-        end
-    end
-    for l in list
-        for col_index in 1:size(matrix1)[2]
-            sum = 0
-            if matrix1[last(count)+1, col_index] != 0
-                push!(count,last(count)+1)
-                for row_index in 1:size(matrix1)[1]
-                    if matrix2[row_index, col_index] != 0 && row_index != last(count)
-                        m[row_index, col_index] = cob_matrix[l, row_index] * matrix2[row_index, col_index]
-                        sum += m[row_index, col_index]
-                    end
-                end
-                cob_matrix[l, last(count)] = (matrix1[l, col_index] - sum) // matrix2[last(count), col_index]
-            end
-        end
-    end
-    return cob_matrix
-end
-
-#################################################################################################################################################
-#################################################################################################################################################
-
-
-
-
-#################################################################################################################################################
-### Merge Sort algorithm to show new variables in reduced echelon form ###
-#################################################################################################################################################
-#To make intersected matrix into ref 
-function merge_sort_aux(matrix)
-    if size(matrix)[1] == 1
-        return matrix
-    end
-    matrix1 = matrix[1:Int(floor(size(matrix)[1] / 2)), :]
-    matrix2 = matrix[size(matrix1)[1] + 1 : size(matrix)[1], :]
-
-    matrix1 = merge_sort_aux(matrix1)
-    matrix2 = merge_sort_aux(matrix2)
-    
-    return merge_sort(matrix1,matrix2)
-end
-function merge_sort(matrix1,matrix2)
-    res_matrix = Array{Int64,2}(undef,0,size(matrix1)[2])
-    #print(res_matrix)
-    while (size(matrix1)[1] != 0 && size(matrix2)[1] != 0) 
-        if (findfirst(x -> x != 0, matrix1)[2] < findfirst(x -> x != 0, matrix2)[2])
-            if size(matrix1)[1] > 1
-                res_matrix = [res_matrix ; reshape(matrix1[1, :],(1,size(matrix1)[2]))]
-                matrix1 = matrix1[setdiff(1:end, 1), :]
-                #print(matrix1)
-            else
-                res_matrix = [res_matrix ; matrix1]
-                matrix1 = matrix1[setdiff(1:end, 1), :] 
-            end
-        else
-            if size(matrix2)[1] > 1
-                res_matrix = [res_matrix ; reshape(matrix2[1, :],(1,size(matrix2)[2]))]
-                matrix2 = matrix2[setdiff(1:end, 1), :]
-            else
-                res_matrix = [res_matrix ; matrix2]
-                matrix2 = matrix2[setdiff(1:end, 1), :]
-            end
-        end
-    end
-    while (size(matrix1)[1] != 0)
-        if size(matrix1)[1] > 1
-            res_matrix = [res_matrix ; reshape(matrix1[1, :],(1,size(matrix1)[2]))]
-            matrix1 = matrix1[setdiff(1:end, 1), :]
-        else
-            res_matrix = [res_matrix ; matrix1]
-            matrix1 = matrix1[setdiff(1:end, 1), :] 
-        end
-    end
-    while (size(matrix2)[1] != 0) 
-        if size(matrix2)[1] > 1
-            res_matrix = [res_matrix ; reshape(matrix2[1, :],(1,size(matrix2)[2]))]
-            matrix2 = matrix2[setdiff(1:end, 1), :]
-        else
-            res_matrix = [res_matrix ; matrix2]
-            matrix2 = matrix2[setdiff(1:end, 1), :]
-        end
-    end
-    return res_matrix
-end
-
-#################################################################################################################################################
-#################################################################################################################################################
 
 
 
 
 
 #################################################################################################################################################
-#Unused/Not yet used functions
+#Utility functions#
 #################################################################################################################################################
-
-#A function to convert matrix to rref
-function rref_matrix(matrix)
-    S = MatrixSpace(ZZ,size(matrix)[1],size(matrix)[2])
-    mat = Array{Int}(matrix)
-    flint_mat = S(mat)
-    return rref(flint_mat)
-end
-
-macro assert(ex)
-    return :( $ex ? nothing : throw(AssertionError($(string(ex)))) )
-end
-
-#A function to convert between fmpz_mat and Array{Int} formats
-function Base.convert(::Type{Array{Int}}, x::Nemo.fmpz_mat)
-    m,n = size(x)
-    mat = Int[x[i,j] for i = 1:m, j = 1:n]
-    return mat
-end
-
-Base.convert(::Type{Array}, x::Nemo.fmpz_mat) = convert(Array{Int}, x)
-
-
-
 function printer(intersect_matrix,txt)
     open(split(txt, ".txt")[1]*"_out.txt", "w") do io
         for line in eachrow(intersect_matrix)
