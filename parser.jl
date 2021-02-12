@@ -1,4 +1,5 @@
 using Nemo
+include("myeval.jl")
 
 function parse_matrix(txt)
 
@@ -42,7 +43,7 @@ function parse_polynomial(txt)
     for index in 0:length(lines)-1
         push!(variables_str, "y$index")
     end
-    #var_tuple = Tuple(variables_str)
+
     #Create the PolynomiaL ring
     QQ = FlintQQ
     R, v = PolynomialRing(QQ, variables_str)
@@ -55,75 +56,17 @@ function parse_polynomial(txt)
         expr_dict[Symbol("y$num")] = v[index]
     end
     
-    poly_system = []
+    counter = 0
+    poly_system = Array{fmpq_mpoly}([])
     for line_index in 1:length(lines)
-        push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
+        #We need to have the Array as type fmpq_mpoly, therefore we need to remove the 0 terms. We add a counter for the Number
+        # of 0 terms, as we will add them back when multiplying f(A^-1y) by A
+        if myeval(Meta.parse(lines[line_index]), expr_dict) != fmpq(0)
+            push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
+        else
+            counter += 1
+        end
     end
-    return poly_system
+    #print(typeof(poly_system))
+    return poly_system, counter
 end
-
-function myeval(e::Union{Expr,Symbol,Number}, map::Dict{Symbol,fmpq_mpoly})
-    try
-        return f(e, map)
-    catch ex
-        println("Can't parse \"$e\"")
-        rethrow(ex)
-    end
-end 
-
-function f(s::Symbol, map::Dict{Symbol,fmpq_mpoly})
-    if haskey(map, s)
-        return map[s]
-    else
-        throw(UndefVarError(s))
-    end
-end    
-
-# Numbers are converted to type Float64.
-function f(x::Number, map::Dict{Symbol,fmpq_mpoly})
-    return Int(x)
-end    
-
-# To parse an expression, convert the head to a singleton
-# type, so that Julia can dispatch on that type.
-function f(e::Expr, map::Dict{Symbol,fmpq_mpoly})
-    return f(Val(e.head), e.args, map)
-end
-
-# Call the function named in args[1]
-function f(::Val{:call}, args, map::Dict{Symbol,fmpq_mpoly})
-    return f(Val(args[1]), args[2:end], map)
-end
-
-# Addition
-function f(::Val{:+}, args, map::Dict{Symbol,fmpq_mpoly})
-    x = 0
-    for arg ∈ args
-        x += f(arg, map)
-    end
-    return x
-end
-
-# Subtraction and negation
-function f(::Val{:-}, args, map::Dict{Symbol,fmpq_mpoly})
-    len = length(args)
-    if len == 1
-        return -f(args[1], map)
-    else
-        return f(args[1], map) - f(args[2], map)
-    end
-end    
-
-# Multiplication
-function f(::Val{:*}, args, map::Dict{Symbol,fmpq_mpoly})
-    x = 1
-    for arg ∈ args
-        x *= f(arg, map)
-    end
-    return x
-end    
-
-# Division
-function f(::Val{:/}, args, map::Dict{Symbol,fmpq_mpoly})
-    return f(args[1], map) / f(args[2], map)
-end    

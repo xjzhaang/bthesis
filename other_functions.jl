@@ -87,13 +87,14 @@ macro assert(ex)
 end
 
 #A function to convert between fmpz_mat and Array{Int} formats
-function Base.convert(::Type{Array{Int}}, x::Nemo.fmpz_poly)
+function Base.convert(::Type{Matrix{Rational{Int}}}, x::Nemo.fmpq_mat)
     m,n = size(x)
-    mat = Rational{Int}[x[i,j] for i = 1:m, j = 1:n]
+    mat = Int[x[i,j] for i = 1:m, j = 1:n]
     return mat
 end
 
-Base.convert(::Type{Array}, x::Nemo.fmpz_poly) = convert(Array{Rationall{Int}}, x)
+Base.convert(::Type{Matrix}, x::Nemo.fmpq_mat) = convert(Matrix{Rational{Int}}, x)
+
 
 
 function polynomial_calc(txt)

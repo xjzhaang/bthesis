@@ -4,6 +4,7 @@ using AbstractAlgebra
 
 include("parser.jl")
 include("other_functions.jl")
+include("myeval.jl")
 
 #################################################################################################################################################
 ### Function to calculate matrix intersection
@@ -36,7 +37,6 @@ function intersection_calc(parsed_matrix)
     orthant_cone = polytope.Cone(INPUT_RAYS=canon_matrix)
 
     intersect_cone = polytope.intersection(matrix_cone, orthant_cone)
-    println("positive orthant dimension: \n", polytope.dim(orthant_cone))
     intersect_matrix = intersect_cone.RAYS
 
     #Now turn all rational elements into integers
@@ -93,13 +93,7 @@ function cob_calc(old_txt)
     # build rational ring and matrix space
     QQ = FlintQQ
 
-    variables_str = Array{String}([])
-    for index in 0:size(parsed_matrix)[1]-1
-        push!(variables_str, "y$index")
-    end
-
-    R, y = PolynomialRing(QQ, variables_str)
-    S = MatrixSpace(R, size(parsed_matrix)[1], size(parsed_matrix)[2])
+    S = MatrixSpace(QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
 
     # construct fmpq_poly matrices
     parsed_matrix = S(parsed_matrix)
@@ -123,11 +117,73 @@ end
 
 function poly_calc(old_txt, old_poly_txt)
 
+    # first, we get the transition matrices, the array of old polynomials (without 0), and the counter for number of 0s
     cob_matrix, cob_matrix_inverse = cob_calc(old_txt)
-    old_poly_system = parse_polynomial(old_poly_txt)
+    old_poly_system, counter = parse_polynomial(old_poly_txt)
+
+
+    
+    #We initialize the Ring again, and construct the dictionary of "variable" => variable
+    QQ = FlintQQ
+
+    variables_str = Array{String}([])
+    for index in 0:size(cob_matrix)[1] - 1
+        push!(variables_str, "y$index")
+    end
+    
+    R, y = PolynomialRing(QQ, variables_str)
+    S = MatrixSpace(QQ, size(cob_matrix)[1], size(cob_matrix)[1])
+
+    expr_dict = Dict("y0" => y[1])
+    for index in 2:length(y)
+        num = index - 1
+        expr_dict["y$num"] = y[index]
+    end
 
     #We first compute A^-1 y
-    for 
+    A_inv_y = Array{fmpq_mpoly}([])
+    for i in 1:size(cob_matrix_inverse)[1]
+        f = 0
+        for j in 1:size(cob_matrix_inverse)[2]
+            num = j - 1
+            coefficient = Rational{Int}(Rational(cob_matrix_inverse[i, j]))
+            f += coefficient * expr_dict["y$num"]
+        end
+        push!(A_inv_y, f)
+    end
+
+    
+    #Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
+    #do this because evaluate() works strictly for Array{fmpq_mpoly}.
+    f_y = []
+    for i in 1:size(old_poly_system)[1]
+        push!(f_y, evaluate(old_poly_system[i], A_inv_y))
+    end
+
+    for i in 0:counter
+        push!(f_y, fmpq(0))
+    end
+
+    #Finally, we multiply from the left by A
+    new_poly = []
+    for i in 1:size(cob_matrix)[1]
+        y_prime = 0
+        for j in 1:size(cob_matrix)[2]
+            num = j-1
+            coefficient = Rational{Int}(Rational(cob_matrix[i, j]))
+            y_prime += coefficient * f_y[j]
+        end
+        push!(new_poly, y_prime)
+    end
+   
+
+    # printer
+    open(split(old_poly_txt, ".txt")[1]*"_new.txt", "w") do io
+        for i in 1:size(new_poly)[1]
+            print(io, new_poly[i])
+            print(io, '\n')
+        end
+    end
 
 end
 
