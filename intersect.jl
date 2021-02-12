@@ -91,6 +91,7 @@ function cob_calc(old_txt)
     intersect_matrix = Array{Int}(intersection_calc(parsed_matrix))
 
     # build rational ring and matrix space
+    # G: just use Nemo.QQ
     QQ = FlintQQ
 
     S = MatrixSpace(QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
@@ -126,6 +127,7 @@ function poly_calc(old_txt, old_poly_txt)
     #We initialize the Ring again, and construct the dictionary of "variable" => variable
     QQ = FlintQQ
 
+    # G: can be done by ["y$ind" for ind in ...]
     variables_str = Array{String}([])
     for index in 0:size(cob_matrix)[1] - 1
         push!(variables_str, "y$index")
@@ -134,6 +136,7 @@ function poly_calc(old_txt, old_poly_txt)
     R, y = PolynomialRing(QQ, variables_str)
     S = MatrixSpace(QQ, size(cob_matrix)[1], size(cob_matrix)[1])
 
+    # G: no need for dict, use y[i] instead
     expr_dict = Dict("y0" => y[1])
     for index in 2:length(y)
         num = index - 1
@@ -144,10 +147,11 @@ function poly_calc(old_txt, old_poly_txt)
     A_inv_y = Array{fmpq_mpoly}([])
     for i in 1:size(cob_matrix_inverse)[1]
         f = 0
+        # G: f = sum([cob_matrix_inverse[i, j] * y[j] for j in  ...])
         for j in 1:size(cob_matrix_inverse)[2]
             num = j - 1
             coefficient = Rational{Int}(Rational(cob_matrix_inverse[i, j]))
-            f += coefficient * expr_dict["y$num"]
+            f += cob_matrix_inverse[i, j] * expr_dict["y$num"]
         end
         push!(A_inv_y, f)
     end
@@ -155,6 +159,7 @@ function poly_calc(old_txt, old_poly_txt)
     
     #Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
     #do this because evaluate() works strictly for Array{fmpq_mpoly}.
+    # G: f_y = map(p -> evaluate(p, A_inv_y), old_poly_system)
     f_y = []
     for i in 1:size(old_poly_system)[1]
         push!(f_y, evaluate(old_poly_system[i], A_inv_y))
@@ -168,6 +173,7 @@ function poly_calc(old_txt, old_poly_txt)
     new_poly = []
     for i in 1:size(cob_matrix)[1]
         y_prime = 0
+        # G: same here
         for j in 1:size(cob_matrix)[2]
             num = j-1
             coefficient = Rational{Int}(Rational(cob_matrix[i, j]))
@@ -178,7 +184,7 @@ function poly_calc(old_txt, old_poly_txt)
    
 
     # printer
-    open(split(old_poly_txt, ".txt")[1]*"_new.txt", "w") do io
+    open(split(old_poly_txt, ".txt")[1] * "_new.txt", "w") do io
         for i in 1:size(new_poly)[1]
             print(io, new_poly[i])
             print(io, '\n')
@@ -196,7 +202,7 @@ end
 #Utility functions#
 #################################################################################################################################################
 function printer(intersect_matrix,txt)
-    open(split(txt, ".txt")[1]*"_out.txt", "w") do io
+    open(split(txt, ".txt")[1] * "_out.txt", "w") do io
         for line in eachrow(intersect_matrix)
             for i in line
                 print(io, i)
