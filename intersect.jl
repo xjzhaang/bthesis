@@ -89,11 +89,10 @@ function cob_calc(old_txt)
     # establish original and new macro-variable matrices (tb changed)
     parsed_matrix = Array{Int}(parse_matrix(old_txt))
     intersect_matrix = Array{Int}(intersection_calc(parsed_matrix))
+    intersect_matrix = merge_sort_aux(intersect_matrix)
 
     # build rational ring and matrix space
-    QQ = FlintQQ
-
-    S = MatrixSpace(QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
+    S = MatrixSpace(Nemo.QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
 
     # construct fmpq_poly matrices
     parsed_matrix = S(parsed_matrix)
@@ -104,7 +103,17 @@ function cob_calc(old_txt)
     cob_matrix_inverse = inv(cob_matrix)
 
     #print(cob_matrix_inverse)
+    open(split(old_txt, ".txt")[1]*"_out.txt", "w") do io
+        for line in 1:size(intersect_matrix)[1]
+            for i in 1:size(intersect_matrix)[2]
+                print(io, intersect_matrix[line,i])
+                print(io, " ")
+            end
+            print(io, "\n")
+        end
+    end
     return cob_matrix, cob_matrix_inverse
+
 end
 
 
@@ -124,55 +133,44 @@ function poly_calc(old_txt, old_poly_txt)
 
     
     #We initialize the Ring again, and construct the dictionary of "variable" => variable
-    QQ = FlintQQ
-
     variables_str = Array{String}([])
     for index in 0:size(cob_matrix)[1] - 1
         push!(variables_str, "y$index")
     end
     
-    R, y = PolynomialRing(QQ, variables_str)
-    S = MatrixSpace(QQ, size(cob_matrix)[1], size(cob_matrix)[1])
+    R, y = PolynomialRing(Nemo.QQ, variables_str)
+    S = MatrixSpace(Nemo.QQ, size(cob_matrix)[1], size(cob_matrix)[1])
 
-    expr_dict = Dict("y0" => y[1])
-    for index in 2:length(y)
-        num = index - 1
-        expr_dict["y$num"] = y[index]
-    end
 
     #We first compute A^-1 y
     A_inv_y = Array{fmpq_mpoly}([])
     for i in 1:size(cob_matrix_inverse)[1]
-        f = 0
-        for j in 1:size(cob_matrix_inverse)[2]
-            num = j - 1
-            coefficient = Rational{Int}(Rational(cob_matrix_inverse[i, j]))
-            f += coefficient * expr_dict["y$num"]
-        end
+        f = sum([cob_matrix_inverse[i, j] * y[j] for j in 1:size(cob_matrix_inverse)[2]])
         push!(A_inv_y, f)
     end
 
     
     #Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
     #do this because evaluate() works strictly for Array{fmpq_mpoly}.
-    f_y = []
-    for i in 1:size(old_poly_system)[1]
-        push!(f_y, evaluate(old_poly_system[i], A_inv_y))
-    end
+    f_y = Array{Any}(map(p -> evaluate(p, A_inv_y), old_poly_system))
 
     for i in 0:counter
         push!(f_y, fmpq(0))
     end
 
+    #print(f_y)
     #Finally, we multiply from the left by A
     new_poly = []
     for i in 1:size(cob_matrix)[1]
-        y_prime = 0
-        for j in 1:size(cob_matrix)[2]
-            num = j-1
-            coefficient = Rational{Int}(Rational(cob_matrix[i, j]))
-            y_prime += coefficient * f_y[j]
-        end
+        y_prime = sum([cob_matrix[i, j] * f_y[j] for j in 1:size(cob_matrix)[2]])
+        print(f_y[i])
+        print('\n')
+        print("=====================================")
+        print('\n')
+        print(y_prime)
+        print('\n')
+        print("+++++++++++++++++++++++++++++++++++++")
+        print('\n')
         push!(new_poly, y_prime)
     end
    
@@ -185,6 +183,16 @@ function poly_calc(old_txt, old_poly_txt)
         end
     end
 
+    #cob_matrix = Array{Int}(cob_matrix)
+    open(split(old_txt, ".txt")[1]*"_trans.txt", "w") do io
+        for line in 1:size(cob_matrix)[1]
+            for i in 1:size(cob_matrix)[2]
+                print(io, cob_matrix[line,i])
+                print(io, " ")
+            end
+            print(io, "\n")
+        end
+    end
 end
 
 
