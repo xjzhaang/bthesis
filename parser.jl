@@ -28,6 +28,7 @@ function parse_matrix(txt)
             end
         end
     end
+    matrix = rational_to_int(matrix)
     return matrix
 end
 
@@ -40,7 +41,7 @@ function parse_polynomial(txt)
     
 
     variables_str = Array{String}([])
-    for index in 0:length(lines)-1
+    for index in 0:length(lines) - 1
         push!(variables_str, "y$index")
     end
 
@@ -52,7 +53,7 @@ function parse_polynomial(txt)
     #Create a dictionary sending symbol to v[i]
     expr_dict = Dict(Symbol("y0") => v[1])
     for index in 2:length(v)
-        num = index-1
+        num = index - 1
         expr_dict[Symbol("y$num")] = v[index]
     end
     
@@ -67,6 +68,27 @@ function parse_polynomial(txt)
             counter += 1
         end
     end
-    #print(typeof(poly_system))
+
     return poly_system, counter
 end
+
+#Transforms Array{Rational{Int}} matrix to Array{Int}
+function rational_to_int(matrix)
+    for row in eachrow(matrix)
+        denominator = 1
+        lcm_ = 1
+        for i in row
+            if typeof(i) == Rational{Int64}
+                #For some reason if i call denominator(i) I get ERROR: MethodError: objects of type Int64 are not callable even though i is Rational(Int64)
+                #so I convert it to string then find the denominator with split. I will look into this in future project.
+                i = string(i)
+                denominator = parse(Int,split(i, "//")[2])
+                lcm_ = lcm(lcm_, denominator)
+            end
+        end
+        row .= row * lcm_
+    end
+    matrix = Array{Int}(matrix)
+    return matrix
+end
+
