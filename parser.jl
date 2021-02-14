@@ -46,8 +46,7 @@ function parse_polynomial(txt)
     end
 
     #Create the PolynomiaL ring
-    QQ = FlintQQ
-    R, v = PolynomialRing(QQ, variables_str)
+    R, v = PolynomialRing(Nemo.QQ, variables_str)
     S = MatrixSpace(R, length(lines), length(lines))
 
     #Create a dictionary sending symbol to v[i]
