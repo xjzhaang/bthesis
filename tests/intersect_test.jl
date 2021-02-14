@@ -54,9 +54,14 @@ end
     new_poly1 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1]), 1)
     new_poly2 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2]), 0)
 
+    #test types
     @test typeof(new_poly1) == Array{Any,1}
-    @test new_poly1 == [-2*y0*y1 + y0*y2 - y2, 1//2*y0*y2 + y1 - 1//2*y2, 0]
+    @test typeof(new_poly1[3]) == fmpq_mpoly
     @test typeof(new_poly2) == Array{Any,1}
+    @test typeof(new_poly2[3]) == fmpq_mpoly
+
+    #test results
+    @test new_poly1 == [-2*y0*y1 + y0*y2 - y2, 1//2*y0*y2 + y1 - 1//2*y2, 0]
     @test new_poly2 == [-2*y0*y1 + y0*y2 - y0, y0*y1*y2 - 1//2*y0*y2^2 + 2*y1^2 - 2*y1*y2, 4*y1^2 - 4*y1*y2]
     println("\n")
 end
