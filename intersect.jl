@@ -47,7 +47,7 @@ function intersection_calc(parsed_matrix)
     intersect_matrix = merge_sort_aux(intersect_matrix)
 
     if size(intersect_matrix)[1] != polytope.dim(matrix_cone)
-        error("Suitable matrix not found")
+        throw(DimensionMismatch("No suitable matrix found"))
     else
         return intersect_matrix
     end
