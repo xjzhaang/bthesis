@@ -47,11 +47,14 @@ function intersection_calc(parsed_matrix)
     intersect_matrix = merge_sort_aux(intersect_matrix)
 
     if size(intersect_matrix)[1] != polytope.dim(matrix_cone)
-        throw(DimensionMismatch("No suitable matrix found"))
-    else
-        return intersect_matrix
+        intersect_matrix = find_best_basis(intersect_matrix)
     end
-    
+        #throw(DimensionMismatch("No suitable matrix found"))
+    print(size(intersect_matrix)[1])
+    print("\n")
+    print(polytope.dim(matrix_cone))
+
+    return intersect_matrix
 end
 
 
@@ -125,8 +128,34 @@ function poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, counter)
 end
 
 
+#################################################################################################################################################
+### Function to find a best basis from linearly dependent rows
+### Input: matrix of rank < dimension
+### Output: matrix of rank = dimension
+#################################################################################################################################################
+#matrix = [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 2 1 1 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 0 1 1 2 0 0 1 1 0 0 1 0 1 0 0 0 0 0 0 0 0 0; 0 0 0 0 0 0 1 1 1 1 0 0 0 2 0 1 1 0 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 2 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+function find_best_basis(matrix)
+    basis_matrix = Array{Int64}(undef, 0, size(matrix)[2])
+    return_matrix = Array{Int64}(undef, 0, size(matrix)[2])
 
+    #problem: I cant index fmpz matrix, so I only transform Array{Int} to fmpz when calculating rank
+    #problem2: MatrixSpace changest after adding another row, so I need to redefine S every time
+    for row_index in 1:size(matrix)[1]
+        S = MatrixSpace(Nemo.ZZ, size(basis_matrix)[1], size(matrix)[2])
+        old_rank = rank(S(basis_matrix))
+        basis_matrix = vcat(basis_matrix, reshape(matrix[row_index, :], 1, size(matrix)[2]))
+        S1 = MatrixSpace(Nemo.ZZ, size(basis_matrix)[1], size(matrix)[2])
+        new_rank = rank(S1(basis_matrix))
 
+        #print((old_rank, new_rank))
+        #print("\n")
+
+        if old_rank != new_rank
+            return_matrix = vcat(return_matrix, reshape(matrix[row_index, :], 1, size(matrix)[2]))
+        end
+    end
+    return return_matrix
+end
 
 
 #################################################################################################################################################
@@ -162,6 +191,7 @@ end
 function get_new_matrix(matrix_txt)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
+    #print(intersect_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
 end
 
@@ -177,10 +207,17 @@ function get_new_poly(matrix_txt, poly_txt)
     new_poly_printer(new_poly, poly_txt)
 end
 
-function run_all(n)
+function run_all_PP(n)
     for i in 2:n
         get_new_matrix("PP/$i" * "m.txt")
         get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt")
+    end
+end
+
+function run_all_fceri(n)
+    for i in 1:n
+        get_new_matrix("fceri/$i" * "m.txt")
+        get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt")
     end
 end
 
