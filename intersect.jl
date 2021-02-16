@@ -52,8 +52,8 @@ function intersection_calc(parsed_matrix::Array{Int})
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
         intersect_matrix = find_best_basis(intersect_matrix)
+        intersect_matrix = merge_sort_aux(intersect_matrix)
     end
-
     print(size(intersect_matrix)[1])
     print('\n')
     print(polytope.dim(matrix_cone))
