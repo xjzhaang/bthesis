@@ -2,7 +2,6 @@ using Nemo
 include("myeval.jl")
 
 function parse_matrix(txt)
-
     f = open(txt)
     lines = readlines(f)
     #first we create a zeros matrix of the correct dimension.
@@ -56,33 +55,29 @@ function parse_polynomial(txt)
         expr_dict[Symbol("y$num")] = v[index]
     end
     
-    counter = 0
     poly_system = Array{fmpq_mpoly}([])
     for line_index in 1:length(lines)
         #We need to have the Array as type fmpq_mpoly, therefore we need to remove the 0 terms. We add a counter for the Number
         # of 0 terms, as we will add them back when multiplying f(A^-1y) by A
-        if myeval(Meta.parse(lines[line_index]), expr_dict) != fmpq(0)
-            push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
+        if myeval(Meta.parse(lines[line_index]), expr_dict) == fmpq(0)
+            push!(poly_system, R(0))
         else
-            counter += 1
+            push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
         end
     end
 
-    return poly_system, counter
+    return poly_system
 end
 
 #Transforms Array{Rational{Int}} matrix to Array{Int}
-function rational_to_int(matrix)
+function rational_to_int(matrix::Array{Rational{Int}})
     for row in eachrow(matrix)
-        denominator = 1
+        denom = 1
         lcm_ = 1
         for i in row
             if typeof(i) == Rational{Int64}
-                #For some reason if i call denominator(i) I get ERROR: MethodError: objects of type Int64 are not callable even though i is Rational(Int64)
-                #so I convert it to string then find the denominator with split. I will look into this in future project.
-                i = string(i)
-                denominator = parse(Int,split(i, "//")[2])
-                lcm_ = lcm(lcm_, denominator)
+                denom = denominator(i)
+                lcm_ = lcm(lcm_, denom)
             end
         end
         row .= row * lcm_

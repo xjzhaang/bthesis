@@ -15,10 +15,8 @@ R, (y0,y1,y2) = PolynomialRing(Nemo.QQ, ["y0", "y1", "y2"])
     @test parse_matrix("test files/test_fraction.txt") == [1 0 0 0; 0 3 0 7; 0 0 -16 21]
 
     #test if polynomial parser is good
-    @test parse_polynomial("test files/test_poly1.txt")[1] == Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1])
-    @test parse_polynomial("test files/test_poly1.txt")[2] == 1
-    @test parse_polynomial("test files/test_poly2.txt")[1] == Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2])
-    @test parse_polynomial("test files/test_poly2.txt")[2] == 0
+    @test parse_polynomial("test files/test_poly1.txt") == Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1, R(0)])
+    @test parse_polynomial("test files/test_poly2.txt") == Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2])
     println("\n")
 end
 
@@ -51,8 +49,8 @@ end
 end
 
 @testset "Polynomial calc test" begin
-    new_poly1 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1]), 1)
-    new_poly2 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2]), 0)
+    new_poly1 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1, R(0)]))
+    new_poly2 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2]))
 
     #test types
     @test typeof(new_poly1) == Array{Any,1}

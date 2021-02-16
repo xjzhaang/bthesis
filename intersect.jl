@@ -8,13 +8,12 @@ include("myeval.jl")
 
 #################################################################################################################################################
 ### Function to calculate matrix intersection
-# Gleb: types (Array{Int}??)
-### Input: parsed matrix
-### Output: intersected matrix
-# Gleb: what if no matrix?
+### Input: parsed matrix of type Array{Int}
+### Output: intersected matrix of type Array{Int}
+###         if no suitable matrix, throw DimensionMismatch 
 #################################################################################################################################################
 
-function intersection_calc(parsed_matrix)
+function intersection_calc(parsed_matrix::Array{Int})
     row, col = size(parsed_matrix)
     
     #we create the canonical matrix of col dimension
@@ -48,14 +47,16 @@ function intersection_calc(parsed_matrix)
     #We now modify the matrix into upper triangular form using merge sort
     intersect_matrix = merge_sort_aux(intersect_matrix)
 
-    if size(intersect_matrix)[1] != polytope.dim(matrix_cone)
+
+    if size(intersect_matrix)[1] < polytope.dim(matrix_cone)
+        throw(DimensionMismatch("No suitable matrix found"))
+    elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
         intersect_matrix = find_best_basis(intersect_matrix)
     end
-        #throw(DimensionMismatch("No suitable matrix found"))
-    print(size(intersect_matrix)[1])
-    print("\n")
-    print(polytope.dim(matrix_cone))
 
+    print(size(intersect_matrix)[1])
+    print('\n')
+    print(polytope.dim(matrix_cone))
     return intersect_matrix
 end
 
@@ -63,15 +64,13 @@ end
 
 #################################################################################################################################################
 ### Function to find change of basis matrix 
-### Input: old macrovariable matrix A, new macrovariable matrix B
-### Output: change of basis matrix M such that A = M * B (?) and M^(-1)
-# Gleb: types
+### Input: old macrovariable matrix A, new macrovariable matrix B of type Array{Int}
+### Output: change of basis matrix M such that A = M * B and M^(-1) of type fmpq_mat
 #################################################################################################################################################
 
-function cob_calc(parsed_matrix, intersect_matrix)
+function cob_calc(parsed_matrix::Array{Int}, intersect_matrix::Array{Int})
     # build rational ring and matrix space
-    # Gleb: use MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
-    S = MatrixSpace(Nemo.QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
+    S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
 
     # construct fmpq_poly matrices
     parsed_matrix = S(parsed_matrix)
@@ -88,48 +87,32 @@ end
 
 #################################################################################################################################################
 ### Function to find new polynomials
-### Input: cob_matrix, cob_matrix_inverse, old_poly_system, counter
-# Gleb: remove counter by having zero polynomials
-### Output: new polynomial system
-#
-# Gleb: types
+### Input: cob_matrix, cob_matrix_inverse, old_poly_system 
+### Output: new polynomial system of type Array{fmpq_mpoly}
+### We use the equation y' = M f( M^(-1) y) where M, M^(-1) are the change of basis matrices
 #################################################################################################################################################
 
-function poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, counter)
+function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly})
     
     # We initialize the Ring
-    # Gleb: variables_str = ["y$index" for index in ???]
-    variables_str = Array{String}([])
-    for index in 0:size(cob_matrix)[1] - 1
-        push!(variables_str, "y$index")
-    end
+    variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
     
     R, y = PolynomialRing(Nemo.QQ, variables_str)
-    # Gleb: again using ...
-    S = MatrixSpace(Nemo.QQ, size(cob_matrix)[1], size(cob_matrix)[1])
+    S = MatrixSpace(Nemo.QQ, size(cob_matrix)...)
 
-
-    # Gleb: what is A?
-    # We first compute A^-1 y
+    # We first compute M^(-1) y
     A_inv_y = Array{fmpq_mpoly}([])
     for i in 1:size(cob_matrix_inverse)[1]
         f = sum([cob_matrix_inverse[i, j] * y[j] for j in 1:size(cob_matrix_inverse)[2]])
         push!(A_inv_y, f)
     end
 
-    # Gleb: hopefully, not necessary
-    # Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
-    # do this because evaluate() works strictly for Array{fmpq_mpoly}.
+    # Now, we evaluate M^(-1) y in f(y1,...yn)
     f_y = Array{Any}(map(p -> evaluate(p, A_inv_y), old_poly_system))
 
-    for i in 0:counter
-        push!(f_y, fmpq(0))
-    end
-
-    #Finally, we multiply from the left by A
+    #Finally, we multiply from the left by M
     new_poly = []
-    # Gleb: use ncols or nrows
-    for i in 1:size(cob_matrix)[1]
+    for i in 1:nrows(cob_matrix)
         y_prime = sum([cob_matrix[i, j] * f_y[j] for j in 1:size(cob_matrix)[2]])
         push!(new_poly, y_prime)
     end
@@ -139,29 +122,77 @@ end
 
 
 #################################################################################################################################################
-### Function to find a best basis from linearly dependent rows
+### Function to find the best basis from linearly dependent rows using Kruskal's greedy algorithm
 ### Input: matrix of rank < dimension
 ### Output: matrix of rank = dimension
 #################################################################################################################################################
-#matrix = [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 2 1 1 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 0 1 1 2 0 0 1 1 0 0 1 0 1 0 0 0 0 0 0 0 0 0; 0 0 0 0 0 0 1 1 1 1 0 0 0 2 0 1 1 0 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 2 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-function find_best_basis(matrix)
-    basis_matrix = Array{Int64}(undef, 0, size(matrix)[2])
-    return_matrix = Array{Int64}(undef, 0, size(matrix)[2])
+function find_best_basis(matrix::Array{Int})
+    #first we construct a list of edges where each edge is a tuple (cost, row1, row2) such that row1 and row2 are linearly independent.
+    #the edge is sorted in decreasing order of cost
+    edges_list = []
+    col = size(matrix)[2]
+    for i in 1:size(matrix)[1] - 1
+        for j in i + 1:size(matrix)[1]
+            S = MatrixSpace(Nemo.ZZ, 2, col)
+            if rank(S(vcat(matrix[i, :], matrix[j, :]))) == 2
+                non_zero = find_nonzero(matrix[i, :]) + find_nonzero(matrix[j, :])
+                push!(edges_list, (non_zero, i, j))
+            end
+        end
+    end
 
-    #problem: I cant index fmpz matrix, so I only transform Array{Int} to fmpz when calculating rank
-    #problem2: MatrixSpace changest after adding another row, so I need to redefine S every time
-    for row_index in 1:size(matrix)[1]
-        S = MatrixSpace(Nemo.ZZ, size(basis_matrix)[1], size(matrix)[2])
-        old_rank = rank(S(basis_matrix))
-        basis_matrix = vcat(basis_matrix, reshape(matrix[row_index, :], 1, size(matrix)[2]))
-        S1 = MatrixSpace(Nemo.ZZ, size(basis_matrix)[1], size(matrix)[2])
-        new_rank = rank(S1(basis_matrix))
+    #print(size(edges_list))
 
-        #print((old_rank, new_rank))
-        #print("\n")
+    sort!(edges_list, by = x -> x[1], rev=true)
 
-        if old_rank != new_rank
-            return_matrix = vcat(return_matrix, reshape(matrix[row_index, :], 1, size(matrix)[2]))
+    #we pop the first edge and construct the return matrix to be [row1, row2]
+    return_matrix = vcat(reshape(matrix[edges_list[1][2], :], 1, col) , reshape(matrix[edges_list[1][3], :], 1, col))
+    visited_row = [edges_list[1][2], edges_list[1][3]]
+    
+    popfirst!(edges_list)
+
+    #for every edge in list of edges, we check if the rows have already been visited, 
+    for edge_index in 1:size(edges_list)[1]
+        #if both arent visited, we see if new rank - 2 = old rank, if not, we remove the rows
+        if !(edges_list[edge_index][2] in visited_row) && !(edges_list[edge_index][3] in visited_row)
+            push!(visited_row, edges_list[edge_index][2])
+            push!(visited_row, edges_list[edge_index][3])
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            old_rank = rank(S(return_matrix))
+            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col), reshape(matrix[edges_list[edge_index][3], :], 1, col)))
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            new_rank = rank(S(return_matrix))
+            if old_rank != new_rank - 2
+                return_matrix = return_matrix[1:size(return_matrix)[1] - 2, :]
+            end
+        #if one is visited, we add the unvisited edge, and we see if new rank -1 = old rank, if not, remove that row
+        elseif !(edges_list[edge_index][2] in visited_row)
+            push!(visited_row, edges_list[edge_index][2])
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            old_rank = rank(S(return_matrix))
+            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col)))
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            new_rank = rank(S(return_matrix))
+            if old_rank != new_rank - 1
+                return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
+            end
+        elseif !(edges_list[edge_index][3] in visited_row)
+            push!(visited_row, edges_list[edge_index][3])
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            old_rank = rank(S(return_matrix))
+            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][3], :], 1, col)))
+            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+            new_rank = rank(S(return_matrix))
+            if old_rank != new_rank - 1
+                return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
+            end
+        else
+            continue
+        end
+        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+        S1 = MatrixSpace(Nemo.ZZ, size(matrix)...)
+        if rank(S(return_matrix)) == rank(S1(matrix))
+            break
         end
     end
     return return_matrix
@@ -196,8 +227,9 @@ function new_poly_printer(new_poly, txt)
     print("File " * split(txt, ".txt")[1] * "_new.txt" * " created!")
 end
 
-
-#To run the script inside julia with > include("poly.jl")   >run(arg)
+###########################################################################################
+#Functions to run within julia
+###########################################################################################
 function get_new_matrix(matrix_txt)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
@@ -211,9 +243,9 @@ function get_new_poly(matrix_txt, poly_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
     cob_matrix, cob_matrix_inverse = cob_calc(parsed_matrix, intersect_matrix)
 
-    old_poly_system, counter = parse_polynomial(poly_txt)
+    old_poly_system= parse_polynomial(poly_txt)
 
-    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, counter)
+    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system)
     new_poly_printer(new_poly, poly_txt)
 end
 
@@ -225,7 +257,7 @@ function run_all_PP(n)
 end
 
 function run_all_fceri(n)
-    for i in 1:n
+    for i in 2:n
         get_new_matrix("fceri/$i" * "m.txt")
         get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt")
     end
