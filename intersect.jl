@@ -8,8 +8,10 @@ include("myeval.jl")
 
 #################################################################################################################################################
 ### Function to calculate matrix intersection
+# Gleb: types (Array{Int}??)
 ### Input: parsed matrix
 ### Output: intersected matrix
+# Gleb: what if no matrix?
 #################################################################################################################################################
 
 function intersection_calc(parsed_matrix)
@@ -22,7 +24,7 @@ function intersection_calc(parsed_matrix)
     end
 
     #we create a zeros matrix that has twice the rows of the input matrix to add negation matrix.
-    input_matrix = zeros(row*2, col)
+    input_matrix = zeros(row * 2, col)
     
     #now we fill the matrix with the parsed matrix and its negation matrix
     for i in 1:row
@@ -61,12 +63,14 @@ end
 
 #################################################################################################################################################
 ### Function to find change of basis matrix 
-### Input: old macrovariable matrix, new macrovariable matrix
-### Output: change of basis matrix and its inverse.
+### Input: old macrovariable matrix A, new macrovariable matrix B
+### Output: change of basis matrix M such that A = M * B (?) and M^(-1)
+# Gleb: types
 #################################################################################################################################################
 
 function cob_calc(parsed_matrix, intersect_matrix)
     # build rational ring and matrix space
+    # Gleb: use MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)[1], size(parsed_matrix)[2])
 
     # construct fmpq_poly matrices
@@ -78,7 +82,6 @@ function cob_calc(parsed_matrix, intersect_matrix)
     cob_matrix_inverse = inv(cob_matrix)
 
     return cob_matrix, cob_matrix_inverse
-
 end
 
 
@@ -86,31 +89,37 @@ end
 #################################################################################################################################################
 ### Function to find new polynomials
 ### Input: cob_matrix, cob_matrix_inverse, old_poly_system, counter
+# Gleb: remove counter by having zero polynomials
 ### Output: new polynomial system
+#
+# Gleb: types
 #################################################################################################################################################
 
 function poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, counter)
     
-    #We initialize the Ring
+    # We initialize the Ring
+    # Gleb: variables_str = ["y$index" for index in ???]
     variables_str = Array{String}([])
     for index in 0:size(cob_matrix)[1] - 1
         push!(variables_str, "y$index")
     end
     
     R, y = PolynomialRing(Nemo.QQ, variables_str)
+    # Gleb: again using ...
     S = MatrixSpace(Nemo.QQ, size(cob_matrix)[1], size(cob_matrix)[1])
 
 
-    #We first compute A^-1 y
+    # Gleb: what is A?
+    # We first compute A^-1 y
     A_inv_y = Array{fmpq_mpoly}([])
     for i in 1:size(cob_matrix_inverse)[1]
         f = sum([cob_matrix_inverse[i, j] * y[j] for j in 1:size(cob_matrix_inverse)[2]])
         push!(A_inv_y, f)
     end
 
-    
-    #Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
-    #do this because evaluate() works strictly for Array{fmpq_mpoly}.
+    # Gleb: hopefully, not necessary
+    # Now, we evaluate A^-1 y in f(y1,...yn) and we add back the 0 terms in the end. We need to 
+    # do this because evaluate() works strictly for Array{fmpq_mpoly}.
     f_y = Array{Any}(map(p -> evaluate(p, A_inv_y), old_poly_system))
 
     for i in 0:counter
@@ -119,6 +128,7 @@ function poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, counter)
 
     #Finally, we multiply from the left by A
     new_poly = []
+    # Gleb: use ncols or nrows
     for i in 1:size(cob_matrix)[1]
         y_prime = sum([cob_matrix[i, j] * f_y[j] for j in 1:size(cob_matrix)[2]])
         push!(new_poly, y_prime)

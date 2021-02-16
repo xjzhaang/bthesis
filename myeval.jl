@@ -1,5 +1,5 @@
-#Adapted from https://discourse.julialang.org/t/expression-parser/41880/7 
-#code by Alan R. Rogers, Professor of Anthropology, University of Utah
+# Adapted from https://discourse.julialang.org/t/expression-parser/41880/7 
+# code by Alan R. Rogers, Professor of Anthropology, University of Utah
 
 function myeval(e::Union{Expr,Symbol,Number}, map::Dict{Symbol,fmpq_mpoly})
     try
