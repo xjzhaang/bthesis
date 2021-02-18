@@ -127,67 +127,32 @@ end
 ### Output: matrix of rank = dimension
 #################################################################################################################################################
 function find_best_basis(matrix::Array{Int})
-    #first we construct a list of edges where each edge is a tuple (cost, row1, row2) such that row1 and row2 are linearly independent.
-    #the edge is sorted in decreasing order of cost
-    edges_list = []
+    #first we construct a list of edges where each edge is a tuple (weight, row1)
     col = size(matrix)[2]
-    for i in 1:size(matrix)[1] - 1
-        for j in i + 1:size(matrix)[1]
-            S = MatrixSpace(Nemo.ZZ, 2, col)
-            if rank(S(vcat(matrix[i, :], matrix[j, :]))) == 2
-                non_zero = find_nonzero(matrix[i, :]) + find_nonzero(matrix[j, :])
-                push!(edges_list, (non_zero, i, j))
-            end
-        end
+    for i in 1:size(matrix)[1]
+        non_zero = find_nonzero(matrix[i, :])
+        push!(edges_list, (non_zero, i))
     end
 
-    #print(size(edges_list))
-
+    #the edges are sorted in decreasing order of weight
     sort!(edges_list, by = x -> x[1], rev=true)
 
     #we pop the first edge and construct the return matrix to be [row1, row2]
-    return_matrix = vcat(reshape(matrix[edges_list[1][2], :], 1, col) , reshape(matrix[edges_list[1][3], :], 1, col))
-    visited_row = [edges_list[1][2], edges_list[1][3]]
-    
+    return_matrix = reshape(matrix[edges_list[1][2], :], 1, col)
+    visited_row = []
     popfirst!(edges_list)
 
-    #for every edge in list of edges, we check if the rows have already been visited, 
+    #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
+    #after everyloop, we check if the rank of return_matrix is the same as the input matrix
     for edge_index in 1:size(edges_list)[1]
-        #if both arent visited, we see if new rank - 2 = old rank, if not, we remove the rows
-        if !(edges_list[edge_index][2] in visited_row) && !(edges_list[edge_index][3] in visited_row)
-            push!(visited_row, edges_list[edge_index][2])
-            push!(visited_row, edges_list[edge_index][3])
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            old_rank = rank(S(return_matrix))
-            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col), reshape(matrix[edges_list[edge_index][3], :], 1, col)))
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            new_rank = rank(S(return_matrix))
-            if old_rank != new_rank - 2
-                return_matrix = return_matrix[1:size(return_matrix)[1] - 2, :]
-            end
-        #if one is visited, we add the unvisited edge, and we see if new rank -1 = old rank, if not, remove that row
-        elseif !(edges_list[edge_index][2] in visited_row)
-            push!(visited_row, edges_list[edge_index][2])
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            old_rank = rank(S(return_matrix))
-            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col)))
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            new_rank = rank(S(return_matrix))
-            if old_rank != new_rank - 1
-                return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
-            end
-        elseif !(edges_list[edge_index][3] in visited_row)
-            push!(visited_row, edges_list[edge_index][3])
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            old_rank = rank(S(return_matrix))
-            return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][3], :], 1, col)))
-            S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-            new_rank = rank(S(return_matrix))
-            if old_rank != new_rank - 1
-                return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
-            end
-        else
-            continue
+        push!(visited_row, edges_list[edge_index][2])
+        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+        old_rank = rank(S(return_matrix))
+        return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col)))
+        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+        new_rank = rank(S(return_matrix))
+        if old_rank != new_rank - 1
+            return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
         end
         S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
         S1 = MatrixSpace(Nemo.ZZ, size(matrix)...)
