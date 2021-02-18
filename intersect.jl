@@ -129,13 +129,14 @@ end
 function find_best_basis(matrix::Array{Int})
     #first we construct a list of edges where each edge is a tuple (weight, row1)
     col = size(matrix)[2]
+    edges_list = []
     for i in 1:size(matrix)[1]
-        non_zero = find_nonzero(matrix[i, :])
-        push!(edges_list, (non_zero, i))
+        weight = find_nonzero(matrix[i, :])
+        push!(edges_list, (weight, i))
     end
 
-    #the edges are sorted in decreasing order of weight
-    sort!(edges_list, by = x -> x[1], rev=true)
+    #the edges are sorted in increasing order of weight
+    sort!(edges_list, by = x -> x[1])
 
     #we pop the first edge and construct the return matrix to be [row1, row2]
     return_matrix = reshape(matrix[edges_list[1][2], :], 1, col)
