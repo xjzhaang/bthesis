@@ -16,13 +16,19 @@ include("myeval.jl")
 function intersection_calc(parsed_matrix::Array{Int})
     row, col = size(parsed_matrix)
     
-    #we create the canonical matrix of col dimension
+    # we create the canonical matrix of col dimension
     canon_matrix = zeros(col,col)
+    # Gleb: be careful with the types: your canon_matrix will be a matrix of floats
+    # you can check this by: println(typeof(canon_matrix))
+    
+    # A shorter way to create the identity matrix over integers (with `using LinearAlgebra`)
+    # Matrix(1I, col, col)
     for i in 1:col
        canon_matrix[i, i] = 1
     end
 
     #we create a zeros matrix that has twice the rows of the input matrix to add negation matrix.
+    # Gleb: again, floats. Use `zeros(Int, row * 2, col)`
     input_matrix = zeros(row * 2, col)
     
     #now we fill the matrix with the parsed matrix and its negation matrix
@@ -41,13 +47,14 @@ function intersection_calc(parsed_matrix::Array{Int})
     intersect_matrix = intersect_cone.RAYS
 
     #Now turn all rational elements into integers
-    
     intersect_matrix = Array{Rational{Int}}(intersect_matrix)
     intersect_matrix = rational_to_int(intersect_matrix)
+
     #We now modify the matrix into upper triangular form using merge sort
     intersect_matrix = merge_sort_aux(intersect_matrix)
 
-
+    # Gleb: I think we should actually check the rank, not the number of vectors
+    # If the matrix is full-rank, we are good, otherwise - no
     if size(intersect_matrix)[1] < polytope.dim(matrix_cone)
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
@@ -129,6 +136,8 @@ end
 function find_best_basis(matrix::Array{Int})
     #first we construct a list of edges where each edge is a tuple (weight, row1)
     col = size(matrix)[2]
+
+    # Gleb: I suggest not to use the graph theory terminology, it is confusing here
     edges_list = []
     for i in 1:size(matrix)[1]
         weight = find_nonzero(matrix[i, :])
@@ -145,18 +154,22 @@ function find_best_basis(matrix::Array{Int})
 
     #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
     #after everyloop, we check if the rank of return_matrix is the same as the input matrix
+    # Gleb: to use enumerate
     for edge_index in 1:size(edges_list)[1]
+        # Gleb: these visited rows do not seem to be used, am I right?
         push!(visited_row, edges_list[edge_index][2])
-        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+        S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
+        # Gleb: why do you compute the old rank? Since you always keep the vectors linearly independent, the rank should
+        # be equal to the number of rows, shouldn't it?
         old_rank = rank(S(return_matrix))
         return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col)))
-        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
+        S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
         new_rank = rank(S(return_matrix))
         if old_rank != new_rank - 1
             return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
         end
-        S = MatrixSpace(Nemo.ZZ, size(return_matrix)...)
-        S1 = MatrixSpace(Nemo.ZZ, size(matrix)...)
+        S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
+        S1 = MatrixSpace(Nemo.QQ, size(matrix)...)
         if rank(S(return_matrix)) == rank(S1(matrix))
             break
         end

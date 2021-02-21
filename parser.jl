@@ -49,6 +49,8 @@ function parse_polynomial(txt)
     S = MatrixSpace(R, length(lines), length(lines))
 
     #Create a dictionary sending symbol to v[i]
+    # Gleb: you can do this with a list comprehension
+    # Dict(Symbol("y$num") => v[num + 1] for num in 0:(length(v) - 1))
     expr_dict = Dict(Symbol("y0") => v[1])
     for index in 2:length(v)
         num = index - 1
@@ -57,6 +59,7 @@ function parse_polynomial(txt)
     
     poly_system = Array{fmpq_mpoly}([])
     for line_index in 1:length(lines)
+        # Gleb: the comment below seems to be outdated, isn't it?
         #We need to have the Array as type fmpq_mpoly, therefore we need to remove the 0 terms. We add a counter for the Number
         # of 0 terms, as we will add them back when multiplying f(A^-1y) by A
         if myeval(Meta.parse(lines[line_index]), expr_dict) == fmpq(0)
