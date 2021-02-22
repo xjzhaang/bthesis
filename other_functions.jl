@@ -3,6 +3,14 @@
 ### Merge Sort algorithm to show new variables in reduced echelon form ###
 #################################################################################################################################################
 #To make intersected matrix into pseudo ref form (upper triangular)
+
+# Gleb: I think we should avoid reimplementing classical algorithms if possible.
+# Would the following do the same:
+#  - convert the matrix into a list of tuple (row, the index of the first nonzero)
+#  - sort the list wrt the second coordinate
+#  - collect the rows in the sorted list in the resulting matrix
+#  ?
+
 function merge_sort_aux(matrix)
     if size(matrix)[1] == 1
         return matrix
