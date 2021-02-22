@@ -50,12 +50,7 @@ function parse_polynomial(txt)
 
     #Create a dictionary sending symbol to v[i]
     # Gleb: you can do this with a list comprehension
-    # Dict(Symbol("y$num") => v[num + 1] for num in 0:(length(v) - 1))
-    expr_dict = Dict(Symbol("y0") => v[1])
-    for index in 2:length(v)
-        num = index - 1
-        expr_dict[Symbol("y$num")] = v[index]
-    end
+    expr_dict = Dict(Symbol("y$num") => v[num + 1] for num in 0:(length(v) - 1))
     
     poly_system = Array{fmpq_mpoly}([])
     for line_index in 1:length(lines)

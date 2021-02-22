@@ -1,6 +1,7 @@
 using Polymake
 using Nemo
 using AbstractAlgebra
+using LinearAlgebra
 
 include("parser.jl")
 include("other_functions.jl")
@@ -17,19 +18,10 @@ function intersection_calc(parsed_matrix::Array{Int})
     row, col = size(parsed_matrix)
     
     # we create the canonical matrix of col dimension
-    canon_matrix = zeros(col,col)
-    # Gleb: be careful with the types: your canon_matrix will be a matrix of floats
-    # you can check this by: println(typeof(canon_matrix))
-    
-    # A shorter way to create the identity matrix over integers (with `using LinearAlgebra`)
-    # Matrix(1I, col, col)
-    for i in 1:col
-       canon_matrix[i, i] = 1
-    end
+    canon_matrix = Matrix(1I, col, col)
 
     #we create a zeros matrix that has twice the rows of the input matrix to add negation matrix.
-    # Gleb: again, floats. Use `zeros(Int, row * 2, col)`
-    input_matrix = zeros(row * 2, col)
+    input_matrix = zeros(Int, row * 2, col)
     
     #now we fill the matrix with the parsed matrix and its negation matrix
     for i in 1:row
@@ -55,6 +47,7 @@ function intersection_calc(parsed_matrix::Array{Int})
 
     # Gleb: I think we should actually check the rank, not the number of vectors
     # If the matrix is full-rank, we are good, otherwise - no
+    #S = MatrixSpace(Nemo.QQ, size(intersect_matrix)...)
     if size(intersect_matrix)[1] < polytope.dim(matrix_cone)
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
@@ -138,31 +131,25 @@ function find_best_basis(matrix::Array{Int})
     col = size(matrix)[2]
 
     # Gleb: I suggest not to use the graph theory terminology, it is confusing here
-    edges_list = []
+    rows_list = []
     for i in 1:size(matrix)[1]
         weight = find_nonzero(matrix[i, :])
-        push!(edges_list, (weight, i))
+        push!(rows_list, (weight, i))
     end
 
     #the edges are sorted in increasing order of weight
-    sort!(edges_list, by = x -> x[1])
+    sort!(rows_list, by = x -> x[1])
 
     #we pop the first edge and construct the return matrix to be [row1, row2]
-    return_matrix = reshape(matrix[edges_list[1][2], :], 1, col)
-    visited_row = []
-    popfirst!(edges_list)
+    return_matrix = reshape(matrix[rows_list[1][2], :], 1, col)
+    popfirst!(rows_list)
 
     #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
     #after everyloop, we check if the rank of return_matrix is the same as the input matrix
     # Gleb: to use enumerate
-    for edge_index in 1:size(edges_list)[1]
-        # Gleb: these visited rows do not seem to be used, am I right?
-        push!(visited_row, edges_list[edge_index][2])
-        S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
-        # Gleb: why do you compute the old rank? Since you always keep the vectors linearly independent, the rank should
-        # be equal to the number of rows, shouldn't it?
-        old_rank = rank(S(return_matrix))
-        return_matrix = vcat(return_matrix, vcat(reshape(matrix[edges_list[edge_index][2], :], 1, col)))
+    for edge_index in 1:size(rows_list)[1]
+        old_rank = size(return_matrix)[1]
+        return_matrix = vcat(return_matrix, vcat(reshape(matrix[rows_list[edge_index][2], :], 1, col)))
         S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
         new_rank = rank(S(return_matrix))
         if old_rank != new_rank - 1
