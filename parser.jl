@@ -65,7 +65,6 @@ function parse_polynomial(txt)
             push!(poly_system, myeval(Meta.parse(lines[line_index]), expr_dict))
         end
     end
-
     return poly_system
 end
 
@@ -86,3 +85,13 @@ function rational_to_int(matrix::Array{Rational{Int}})
     return matrix
 end
 
+function parse_varnames(txt)
+    f = open(txt)
+    lines = readlines(f)
+    
+    variables_dict = Dict()
+    for l in 0:length(lines) - 1
+        variables_dict[l] = lines[l + 1]
+    end
+    return variables_dict
+end

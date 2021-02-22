@@ -182,6 +182,34 @@ function new_matrix_printer(intersect_matrix, txt)
     print("File " * split(txt, ".txt")[1] * "_new.txt" * " created!")
 end
 
+function fceri_macro_printer(intersect_matrix, fceri_varnames, txt)
+    variables_dict = parse_varnames(fceri_varnames)
+    new_names = Dict()
+    open(split(txt, ".txt")[1] * "_macrovariables.txt", "w") do io
+        for row_index in 0:size(intersect_matrix)[1] - 1
+            str = "y" * "$row_index = "
+            for col_index in 0:size(intersect_matrix)[2] - 1
+                if intersect_matrix[row_index + 1, col_index + 1] == 0
+                    continue
+                elseif intersect_matrix[row_index + 1, col_index + 1] == 1
+                    str = str * variables_dict[col_index] * " + "
+                else
+                    str = str * string(intersect_matrix[row_index + 1, col_index + 1])
+                    str = str * variables_dict[col_index] * " + "
+                end
+            
+            end
+            str = str[1: length(str) - 3]
+            if !occursin(" + ", str)
+                new_names["y" * "$row_index"] = split(str, "= ")[2] 
+            end
+            print(io, str)
+            print(io, "\n")
+        end
+    end
+    return new_names
+end
+
 function new_poly_printer(new_poly, txt)
     open(split(txt, ".txt")[1] * "_new.txt", "w") do io
         for row_index in 1:size(new_poly)[1]
@@ -196,11 +224,13 @@ end
 ###########################################################################################
 #Functions to run within julia
 ###########################################################################################
-function get_new_matrix(matrix_txt)
+function get_new_matrix(matrix_txt, is_fceri)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
-    #print(intersect_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
+    if is_fceri
+        new_names = fceri_macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    end
 end
 
 
@@ -217,14 +247,14 @@ end
 
 function run_all_PP(n)
     for i in 2:n
-        get_new_matrix("PP/$i" * "m.txt")
+        get_new_matrix("PP/$i" * "m.txt", false)
         get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt")
     end
 end
 
 function run_all_fceri(n)
     for i in 2:n
-        get_new_matrix("fceri/$i" * "m.txt")
+        get_new_matrix("fceri/$i" * "m.txt", true)
         get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt")
     end
 end
@@ -242,3 +272,7 @@ end
 
 #################################################################################################################################################
 #################################################################################################################################################
+
+
+#PP_2 = ['S0', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'kCatE', 'kCatF', 'kOffE', 'kOffF', 'kOnE', 'kOnF']
+
