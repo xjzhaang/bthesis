@@ -43,7 +43,7 @@ function parse_polynomial(txt)
     for index in 0:length(lines) - 1
         push!(variables_str, "y$index")
     end
-
+    
     #Create the PolynomiaL ring
     R, v = PolynomialRing(Nemo.QQ, variables_str)
     S = MatrixSpace(R, length(lines), length(lines))
@@ -54,9 +54,6 @@ function parse_polynomial(txt)
     
     poly_system = Array{fmpq_mpoly}([])
     for line_index in 1:length(lines)
-        # Gleb: the comment below seems to be outdated, isn't it?
-        #We need to have the Array as type fmpq_mpoly, therefore we need to remove the 0 terms. We add a counter for the Number
-        # of 0 terms, as we will add them back when multiplying f(A^-1y) by A
         if myeval(Meta.parse(lines[line_index]), expr_dict) == fmpq(0)
             push!(poly_system, R(0))
         else

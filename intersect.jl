@@ -92,10 +92,18 @@ end
 ### We use the equation y' = M f( M^(-1) y) where M, M^(-1) are the change of basis matrices
 #################################################################################################################################################
 
-function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly})
+function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly}, new_names)
     
     # We initialize the Ring
-    variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
+    #variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
+    variables_str = Array{String}([])
+    for index in 0:size(cob_matrix)[1] - 1
+        if haskey(new_names, "y$index")
+            push!(variables_str, new_names["y$index"])
+        else
+            push!(variables_str, "y$index")
+        end
+    end
     
     R, y = PolynomialRing(Nemo.QQ, variables_str)
     S = MatrixSpace(Nemo.QQ, size(cob_matrix)...)
@@ -116,7 +124,7 @@ function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_
         y_prime = sum([cob_matrix[i, j] * f_y[j] for j in 1:size(cob_matrix)[2]])
         push!(new_poly, y_prime)
     end
-
+    
     return new_poly
 end
 
@@ -234,28 +242,32 @@ function get_new_matrix(matrix_txt, is_fceri)
 end
 
 
-function get_new_poly(matrix_txt, poly_txt)
+function get_new_poly(matrix_txt, poly_txt, is_fceri)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
     cob_matrix, cob_matrix_inverse = cob_calc(parsed_matrix, intersect_matrix)
-
+    
     old_poly_system= parse_polynomial(poly_txt)
-
-    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system)
+    if is_fceri
+        new_names = fceri_macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    else
+        new_names = Dict()
+    end
+    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, new_names)
     new_poly_printer(new_poly, poly_txt)
 end
 
 function run_all_PP(n)
     for i in 2:n
         get_new_matrix("PP/$i" * "m.txt", false)
-        get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt")
+        get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt", false)
     end
 end
 
 function run_all_fceri(n)
     for i in 2:n
         get_new_matrix("fceri/$i" * "m.txt", true)
-        get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt")
+        get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt", true)
     end
 end
 
