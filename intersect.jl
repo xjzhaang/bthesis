@@ -14,6 +14,7 @@ include("myeval.jl")
 ###         if no suitable matrix, throw DimensionMismatch 
 #################################################################################################################################################
 
+# Gleb: I guess this can be written as Array{Int, 2}, am I right?
 function intersection_calc(parsed_matrix::Array{Int})
     row, col = size(parsed_matrix)
     
@@ -68,6 +69,7 @@ end
 ### Output: change of basis matrix M such that A = M * B and M^(-1) of type fmpq_mat
 #################################################################################################################################################
 
+# Gleb: also, I guess Array{Int, 2}
 function cob_calc(parsed_matrix::Array{Int}, intersect_matrix::Array{Int})
     # build rational ring and matrix space
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
@@ -87,7 +89,8 @@ end
 
 #################################################################################################################################################
 ### Function to find new polynomials
-### Input: cob_matrix, cob_matrix_inverse, old_poly_system 
+### Input: cob_matrix, cob_matrix_inverse, old_poly_system
+# Gleb: new_names?
 ### Output: new polynomial system of type Array{fmpq_mpoly}
 ### We use the equation y' = M f( M^(-1) y) where M, M^(-1) are the change of basis matrices
 #################################################################################################################################################
@@ -95,7 +98,6 @@ end
 function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly}, new_names)
     
     # We initialize the Ring
-    #variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
     variables_str = Array{String}([])
     for index in 0:size(cob_matrix)[1] - 1
         if haskey(new_names, "y$index")
@@ -138,17 +140,17 @@ function find_best_basis(matrix::Array{Int})
     #first we construct a list of edges where each edge is a tuple (weight, row1)
     col = size(matrix)[2]
 
-    # Gleb: I suggest not to use the graph theory terminology, it is confusing here
     rows_list = []
     for i in 1:size(matrix)[1]
         weight = find_nonzero(matrix[i, :])
         push!(rows_list, (weight, i))
     end
 
-    #the edges are sorted in increasing order of weight
+    #the rows are sorted in increasing order of weight
     sort!(rows_list, by = x -> x[1])
 
-    #we pop the first edge and construct the return matrix to be [row1, row2]
+    #we pop the first row and construct the return matrix to be [row1, row2]
+    # Gleb: I think it should be just [row] in the comment above
     return_matrix = reshape(matrix[rows_list[1][2], :], 1, col)
     popfirst!(rows_list)
 
