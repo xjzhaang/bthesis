@@ -3,71 +3,15 @@
 ### Merge Sort algorithm to show new variables in reduced echelon form ###
 #################################################################################################################################################
 #To make intersected matrix into pseudo ref form (upper triangular)
-
-# Gleb: I think we should avoid reimplementing classical algorithms if possible.
-# Would the following do the same:
-#  - convert the matrix into a list of tuple (row, the index of the first nonzero)
-#  - sort the list wrt the second coordinate
-#  - collect the rows in the sorted list in the resulting matrix
-#  ?
-
-function merge_sort_aux(matrix)
-    if size(matrix)[1] == 1
-        return matrix
+function sort_matrix(matrix::Array{Int})
+    new_matrix = zeros(Int, size(matrix)...)
+    tuples = [(row_index, findfirst(x->x!=0, matrix[row_index, :])) for row_index in 1:size(matrix)[1]]
+    sort!(tuples, by = x -> x[2])
+    for row_index in 1:size(tuples)[1]
+        new_matrix[row_index, :] = matrix[tuples[row_index][1], :]
     end
-    matrix1 = matrix[1:Int(floor(size(matrix)[1] / 2)), :]
-    matrix2 = matrix[size(matrix1)[1] + 1 : size(matrix)[1], :]
-
-    matrix1 = merge_sort_aux(matrix1)
-    matrix2 = merge_sort_aux(matrix2)
-    
-    return merge_sort(matrix1,matrix2)
+    return new_matrix
 end
-
-function merge_sort(matrix1,matrix2)
-    res_matrix = Array{Int64,2}(undef,0,size(matrix1)[2])
-    #print(res_matrix)
-    while (size(matrix1)[1] != 0 && size(matrix2)[1] != 0) 
-        if (findfirst(x -> x != 0, matrix1)[2] < findfirst(x -> x != 0, matrix2)[2])
-            if size(matrix1)[1] > 1
-                res_matrix = [res_matrix; reshape(matrix1[1, :], (1,size(matrix1)[2]))]
-                matrix1 = matrix1[setdiff(1:end, 1), :]
-                #print(matrix1)
-            else
-                res_matrix = [res_matrix; matrix1]
-                matrix1 = matrix1[setdiff(1:end, 1), :] 
-            end
-        else
-            if size(matrix2)[1] > 1
-                res_matrix = [res_matrix; reshape(matrix2[1, :], (1,size(matrix2)[2]))]
-                matrix2 = matrix2[setdiff(1:end, 1), :]
-            else
-                res_matrix = [res_matrix; matrix2]
-                matrix2 = matrix2[setdiff(1:end, 1), :]
-            end
-        end
-    end
-    while (size(matrix1)[1] != 0)
-        if size(matrix1)[1] > 1
-            res_matrix = [res_matrix; reshape(matrix1[1, :], (1,size(matrix1)[2]))]
-            matrix1 = matrix1[setdiff(1:end, 1), :]
-        else
-            res_matrix = [res_matrix; matrix1]
-            matrix1 = matrix1[setdiff(1:end, 1), :] 
-        end
-    end
-    while (size(matrix2)[1] != 0) 
-        if size(matrix2)[1] > 1
-            res_matrix = [res_matrix; reshape(matrix2[1, :], (1,size(matrix2)[2]))]
-            matrix2 = matrix2[setdiff(1:end, 1), :]
-        else
-            res_matrix = [res_matrix; matrix2]
-            matrix2 = matrix2[setdiff(1:end, 1), :]
-        end
-    end
-    return res_matrix
-end
-
 #################################################################################################################################################
 #################################################################################################################################################
 

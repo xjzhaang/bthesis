@@ -44,7 +44,7 @@ function intersection_calc(parsed_matrix::Array{Int})
     intersect_matrix = rational_to_int(intersect_matrix)
 
     #We now modify the matrix into upper triangular form using merge sort
-    intersect_matrix = merge_sort_aux(intersect_matrix)
+    intersect_matrix = sort_matrix(intersect_matrix)
 
     # Gleb: I think we should actually check the rank, not the number of vectors
     # If the matrix is full-rank, we are good, otherwise - no
@@ -53,7 +53,7 @@ function intersection_calc(parsed_matrix::Array{Int})
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
         intersect_matrix = find_best_basis(intersect_matrix)
-        intersect_matrix = merge_sort_aux(intersect_matrix)
+        intersect_matrix = sort_matrix(intersect_matrix)
     end
     print(size(intersect_matrix)[1])
     print('\n')
