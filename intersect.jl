@@ -156,9 +156,9 @@ function find_best_basis(matrix::Array{Int, 2})
     #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
     #after everyloop, we check if the rank of return_matrix is the same as the input matrix
     # Gleb: to use enumerate
-    for index in 1:size(rows_list)[1]
+    for row in rows_list
         old_rank = size(return_matrix)[1]
-        return_matrix = vcat(return_matrix, vcat(reshape(matrix[rows_list[index][2], :], 1, col)))
+        return_matrix = vcat(return_matrix, vcat(reshape(matrix[row[2], :], 1, col)))
         S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
         new_rank = rank(S(return_matrix))
         if old_rank != new_rank - 1
@@ -269,6 +269,13 @@ function run_all_fceri(n)
     for i in 2:n
         get_new_matrix("fceri/$i" * "m.txt", true)
         get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt", true)
+    end
+end
+
+function run_all_Barua(n)
+    for i in 2:n
+        get_new_matrix("Barua/$i" * "m.txt", false)
+        get_new_poly("Barua/$i" * "m.txt", "Barua/$i" * "p.txt", false)
     end
 end
 

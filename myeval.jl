@@ -62,6 +62,15 @@ function f(::Val{:*}, args, map::Dict{Symbol,fmpq_mpoly})
     return x
 end    
 
+# Exponential
+function f(::Val{:^}, args, map::Dict{Symbol,fmpq_mpoly})
+    x = 0
+    for arg ∈ args
+        x ^= f(arg, map)
+    end
+    return x
+end    
+
 # Division
 function f(::Val{:/}, args, map::Dict{Symbol,fmpq_mpoly})
     return f(args[1], map) / f(args[2], map)
