@@ -15,7 +15,7 @@ include("myeval.jl")
 #################################################################################################################################################
 
 # Gleb: I guess this can be written as Array{Int, 2}, am I right?
-function intersection_calc(parsed_matrix::Array{Int})
+function intersection_calc(parsed_matrix::Array{Int, 2})
     row, col = size(parsed_matrix)
     
     # we create the canonical matrix of col dimension
@@ -48,8 +48,8 @@ function intersection_calc(parsed_matrix::Array{Int})
 
     # Gleb: I think we should actually check the rank, not the number of vectors
     # If the matrix is full-rank, we are good, otherwise - no
-    #S = MatrixSpace(Nemo.QQ, size(intersect_matrix)...)
-    if size(intersect_matrix)[1] < polytope.dim(matrix_cone)
+    S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
+    if polytope.dim(matrix_cone) < rank(S(parsed_matrix))
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
         intersect_matrix = find_best_basis(intersect_matrix)
@@ -70,7 +70,7 @@ end
 #################################################################################################################################################
 
 # Gleb: also, I guess Array{Int, 2}
-function cob_calc(parsed_matrix::Array{Int}, intersect_matrix::Array{Int})
+function cob_calc(parsed_matrix::Array{Int, 2}, intersect_matrix::Array{Int, 2})
     # build rational ring and matrix space
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
 
@@ -136,7 +136,7 @@ end
 ### Input: matrix of rank < dimension
 ### Output: matrix of rank = dimension
 #################################################################################################################################################
-function find_best_basis(matrix::Array{Int})
+function find_best_basis(matrix::Array{Int, 2})
     #first we construct a list of edges where each edge is a tuple (weight, row1)
     col = size(matrix)[2]
 
@@ -149,17 +149,16 @@ function find_best_basis(matrix::Array{Int})
     #the rows are sorted in increasing order of weight
     sort!(rows_list, by = x -> x[1])
 
-    #we pop the first row and construct the return matrix to be [row1, row2]
-    # Gleb: I think it should be just [row] in the comment above
+    #we pop the first row and construct the return matrix to be [row]
     return_matrix = reshape(matrix[rows_list[1][2], :], 1, col)
     popfirst!(rows_list)
 
     #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
     #after everyloop, we check if the rank of return_matrix is the same as the input matrix
     # Gleb: to use enumerate
-    for edge_index in 1:size(rows_list)[1]
+    for index in 1:size(rows_list)[1]
         old_rank = size(return_matrix)[1]
-        return_matrix = vcat(return_matrix, vcat(reshape(matrix[rows_list[edge_index][2], :], 1, col)))
+        return_matrix = vcat(return_matrix, vcat(reshape(matrix[rows_list[index][2], :], 1, col)))
         S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
         new_rank = rank(S(return_matrix))
         if old_rank != new_rank - 1

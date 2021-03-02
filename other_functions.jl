@@ -8,13 +8,14 @@ function sort_matrix(matrix::Array{Int})
     tuples = [(row_index, findfirst(x->x!=0, matrix[row_index, :])) for row_index in 1:size(matrix)[1]]
     sort!(tuples, by = x -> x[2])
     for row_index in 1:size(tuples)[1]
-        new_matrix[row_index, :] = matrix[tuples[row_index][1], :]
+        new_matrix[row_index, :] = matrix[tuples[row_index][1], :] 
     end
     return new_matrix
 end
-#################################################################################################################################################
-#################################################################################################################################################
 
+#################################################################################################################################################
+### Function to find number of nonzero elements in array ###
+#################################################################################################################################################
 function find_nonzero(list)
     count = 0
     for i in 1:length(list)
