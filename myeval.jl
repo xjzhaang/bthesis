@@ -65,13 +65,13 @@ end
 # Exponential
 function f(::Val{:^}, args, map::Dict{Symbol,fmpq_mpoly})
     x = 1
-    for arg ∈ args
-        x ^= f(arg, map)
-    end
-    return x
+    #for arg ∈ args
+     #   x ^= f(arg, map)
+    #end
+    return f(args[1], map) ^ fmpz(numerator(f(args[2], map)))
 end    
 
 # Division
 function f(::Val{:/}, args, map::Dict{Symbol,fmpq_mpoly})
-    return f(args[1], map) / f(args[2], map)
+    return f(args[1], map) // f(args[2], map)
 end    

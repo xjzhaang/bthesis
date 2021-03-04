@@ -37,7 +37,7 @@ function parse_polynomial(txt)
     # parse the text file
     f = open(txt)
     lines = readlines(f)
-    
+    lines = julia_exponent(lines)
 
     variables_str = Array{String}([])
     for index in 0:length(lines) - 1
@@ -79,6 +79,14 @@ function rational_to_int(matrix::Array{Rational{Int}})
     matrix = Array{Int}(matrix)
     return matrix
 end
+
+function julia_exponent(lines)
+    for index in 1:size(lines)[1]
+        lines[index] = replace(lines[index], "**" => "^")
+    end
+    return lines
+end
+
 
 function parse_varnames(txt)
     f = open(txt)
