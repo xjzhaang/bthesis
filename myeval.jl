@@ -64,6 +64,7 @@ end
 
 # Exponential
 function f(::Val{:^}, args, map::Dict{Symbol,fmpq_mpoly})
+    # Gleb: do we need this x?
     x = 1
     #for arg ∈ args
      #   x ^= f(arg, map)

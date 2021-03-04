@@ -14,7 +14,6 @@ include("myeval.jl")
 ###         if no suitable matrix, throw DimensionMismatch 
 #################################################################################################################################################
 
-# Gleb: I guess this can be written as Array{Int, 2}, am I right?
 function intersection_calc(parsed_matrix::Array{Int, 2})
     row, col = size(parsed_matrix)
     
@@ -46,8 +45,6 @@ function intersection_calc(parsed_matrix::Array{Int, 2})
     #We now modify the matrix into upper triangular form using merge sort
     intersect_matrix = sort_matrix(intersect_matrix)
 
-    # Gleb: I think we should actually check the rank, not the number of vectors
-    # If the matrix is full-rank, we are good, otherwise - no
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
     if polytope.dim(matrix_cone) < rank(S(parsed_matrix))
         throw(DimensionMismatch("No suitable matrix found"))
@@ -69,7 +66,6 @@ end
 ### Output: change of basis matrix M such that A = M * B and M^(-1) of type fmpq_mat
 #################################################################################################################################################
 
-# Gleb: also, I guess Array{Int, 2}
 function cob_calc(parsed_matrix::Array{Int, 2}, intersect_matrix::Array{Int, 2})
     # build rational ring and matrix space
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
@@ -155,7 +151,6 @@ function find_best_basis(matrix::Array{Int, 2})
 
     #for every edge in list of edges, we add to the return_matrix and see if it is linearly independent, if not, we remove it
     #after everyloop, we check if the rank of return_matrix is the same as the input matrix
-    # Gleb: to use enumerate
     for row in rows_list
         old_rank = size(return_matrix)[1]
         return_matrix = vcat(return_matrix, vcat(reshape(matrix[row[2], :], 1, col)))
@@ -164,6 +159,8 @@ function find_best_basis(matrix::Array{Int, 2})
         if old_rank != new_rank - 1
             return_matrix = return_matrix[1:size(return_matrix)[1] - 1, :]
         end
+        # Gleb: S and S1 is not the best naming. Actually, I think you can simply use `matrix` function, see
+        # https://nemocas.github.io/AbstractAlgebra.jl/latest/matrix_spaces/
         S = MatrixSpace(Nemo.QQ, size(return_matrix)...)
         S1 = MatrixSpace(Nemo.QQ, size(matrix)...)
         if rank(S(return_matrix)) == rank(S1(matrix))
