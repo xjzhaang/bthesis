@@ -90,7 +90,7 @@ def read_variables():
                             res_meaning.append("SH2Lyn")
                     if res_sub not in translations:
                         translations[res_sub] = res_meaning
-                if rate == "pkpS":
+                if rate == "2.0 * pkpS":
                     if translations[sub1] == "Syk":
                         if type(translations[sub2]) != list:
                             res_meaning = [translations[sub2], "Syk"]
@@ -103,6 +103,22 @@ def read_variables():
                         else:
                             res_meaning = copy.deepcopy(translations[sub1])
                             res_meaning.append("Syk")
+                    if res_sub not in translations:
+                        translations[res_sub] = res_meaning
+                if rate == "pkpS":
+                    if type(translations[sub1]) != list and type(translations[sub2]) != list:
+                        res_meaning = [translations[sub1], translations[sub2]]
+                    else:
+                        if type(translations[sub1]) != list and type(translations[sub2]) == list:
+                            res_meaning = copy.deepcopy(translations[sub2])
+                            res_meaning.append(translations[sub1])
+                        if type(translations[sub2]) != list and type(translations[sub1]) == list:
+                            res_meaning = copy.deepcopy(translations[sub1])
+                            res_meaning.append(translations[sub2])
+                        if type(translations[sub1]) == list and type(translations[sub2]) == list:
+                            res_meaning = copy.deepcopy(translations[sub1])
+                            for item in translations[sub2]:
+                                res_meaning.append(item)
                     if res_sub not in translations:
                         translations[res_sub] = res_meaning
         if not two_res_sub:
@@ -167,9 +183,21 @@ def read_variables():
                             res_meaning_2.remove(removal_dict[item])
                     if res_sub2 not in translations:
                         translations[res_sub2] = res_meaning_2
-                
-                    
-    #print(translations)
+                if rate == "pkmS":
+                    res_meaning_2 = copy.deepcopy(translations[sub1])
+                    print(res_meaning_2)
+                    print(n)
+                    print(translations[res_sub1])
+                    if type(translations[res_sub1]) != list:
+                        res_meaning_2.remove(translations[res_sub1])
+                    else:
+                        for item in translations[res_sub1]:
+                            if item in res_meaning_2:
+                                res_meaning_2.remove(item)
+                            elif item in removal_dict:
+                                res_meaning_2.remove(removal_dict[item])
+                    if res_sub2 not in translations:
+                        translations[res_sub2] = res_meaning_2
     return translations
 
 read_variables()
