@@ -1,4 +1,5 @@
 import copy
+from natsort import natsorted
 def read_variables():
     #to 1479
     n = 0
@@ -204,5 +205,5 @@ read_variables()
 with open('fceri_meanings','w') as afile:
     translations = read_variables()
     #print(translations["S4"])
-    list_of_strings = [ f'{key} : {translations[key]}' for key in translations]
+    list_of_strings = [ f'{key} : {translations[key]}' for key in natsorted(translations)]
     [afile.write(f'{st}\n') for st in list_of_strings ]
