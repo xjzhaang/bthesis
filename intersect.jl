@@ -188,8 +188,8 @@ function new_matrix_printer(intersect_matrix, txt)
     print("File " * split(txt, ".txt")[1] * "_new.txt" * " created!")
 end
 
-function fceri_macro_printer(intersect_matrix, fceri_varnames, txt)
-    variables_dict = parse_varnames(fceri_varnames)
+function macro_printer(intersect_matrix, varnames, txt)
+    variables_dict = parse_varnames(varnames)
     new_names = Dict()
     open(split(txt, ".txt")[1] * "_macrovariables.txt", "w") do io
         for row_index in 0:size(intersect_matrix)[1] - 1
@@ -230,24 +230,32 @@ end
 ###########################################################################################
 #Functions to run within julia
 ###########################################################################################
-function get_new_matrix(matrix_txt, is_fceri)
+function get_new_matrix(matrix_txt, is_model)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
-    if is_fceri
-        new_names = fceri_macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    if is_model == "fceri"
+        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    end
+    if is_model == "Barua"
+        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     end
 end
 
 
-function get_new_poly(matrix_txt, poly_txt, is_fceri)
+function get_new_poly(matrix_txt, poly_txt, is_model)
     parsed_matrix = parse_matrix(matrix_txt)
     intersect_matrix = intersection_calc(parsed_matrix)
     cob_matrix, cob_matrix_inverse = cob_calc(parsed_matrix, intersect_matrix)
     
     old_poly_system= parse_polynomial(poly_txt)
-    if is_fceri
-        new_names = fceri_macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    if is_model == "fceri"
+        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    else
+        new_names = Dict()
+    end
+    if is_model == "Barua"
+        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     else
         new_names = Dict()
     end
@@ -257,22 +265,22 @@ end
 
 function run_all_PP(n)
     for i in 2:n
-        get_new_matrix("PP/$i" * "m.txt", false)
-        get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt", false)
+        get_new_matrix("PP/$i" * "m.txt", "PP")
+        get_new_poly("PP/$i" * "m.txt", "PP/$i" * "p.txt", "PP")
     end
 end
 
 function run_all_fceri(n)
     for i in 2:n
-        get_new_matrix("fceri/$i" * "m.txt", true)
-        get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt", true)
+        get_new_matrix("fceri/$i" * "m.txt", "fceri")
+        get_new_poly("fceri/$i" * "m.txt", "fceri/$i" * "p.txt", "fceri")
     end
 end
 
 function run_all_Barua(n)
     for i in 2:n
-        get_new_matrix("Barua/$i" * "m.txt", false)
-        get_new_poly("Barua/$i" * "m.txt", "Barua/$i" * "p.txt", false)
+        get_new_matrix("Barua/$i" * "m.txt", "Barua")
+        get_new_poly("Barua/$i" * "m.txt", "Barua/$i" * "p.txt", "Barua")
     end
 end
 

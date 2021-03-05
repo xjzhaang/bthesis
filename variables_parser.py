@@ -34,11 +34,9 @@ def read_variables():
                         res_meaning = [translations[sub1], translations[sub2]]
                     else:
                         if type(translations[sub1]) != list and type(translations[sub2]) == list:
-                            res_meaning = copy.deepcopy(translations[sub2])
-                            res_meaning.append(translations[sub1])
-                        if type(translations[sub2]) != list and type(translations[sub1]) == list:
-                            res_meaning = copy.deepcopy(translations[sub1])
-                            res_meaning.append(translations[sub2])
+                            res_meaning = [copy.deepcopy(translations[sub1])]
+                            for item in translations[sub2]:
+                                res_meaning.append(item)
                         if type(translations[sub1]) == list and type(translations[sub2]) == list:
                             res_meaning = copy.deepcopy(translations[sub1])
                             for item in translations[sub2]:
@@ -50,11 +48,9 @@ def read_variables():
                         res_meaning = [translations[sub1], translations[sub2]]
                     else:
                         if type(translations[sub1]) != list and type(translations[sub2]) == list:
-                            res_meaning = copy.deepcopy(translations[sub2])
-                            res_meaning.append(translations[sub1])
-                        if type(translations[sub2]) != list and type(translations[sub1]) == list:
-                            res_meaning = copy.deepcopy(translations[sub1])
-                            res_meaning.append(translations[sub2])
+                            res_meaning = [copy.deepcopy(translations[sub1])]
+                            for item in translations[sub2]:
+                                res_meaning.append(item)
                         if type(translations[sub1]) == list and type(translations[sub2]) == list:
                             res_meaning = copy.deepcopy(translations[sub1])
                             for item in translations[sub2]:
@@ -186,9 +182,6 @@ def read_variables():
                         translations[res_sub2] = res_meaning_2
                 if rate == "pkmS":
                     res_meaning_2 = copy.deepcopy(translations[sub1])
-                    print(res_meaning_2)
-                    print(n)
-                    print(translations[res_sub1])
                     if type(translations[res_sub1]) != list:
                         res_meaning_2.remove(translations[res_sub1])
                     else:
