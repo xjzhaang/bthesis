@@ -5,6 +5,7 @@ def read_variables():
     f = open("fceri_ode.txt", "r")
     lines = f.readlines()
     translations = {"S0": "IgE", "S1": "Lyn", "S2": "Syk", "S3": "r"}
+    removal_dict = {"Lyn": ["cLyn", "SH2Lyn"], "cgammaP": "SH2gammaP", "SH2gammaP": "cgammaP"}
     for l in lines:
         n += 1
         #print(n)
@@ -108,22 +109,22 @@ def read_variables():
             if sub1 in translations and sub2 in translations:
                 if rate == "ppLb":
                     res_meaning = copy.deepcopy(translations[sub1])
-                    res_meaning.append("betaP")
+                    res_meaning.append("cbetaP")
                     if res_sub1 not in translations:
                         translations[res_sub1] = res_meaning
                 if rate == "ppLg":
                     res_meaning = copy.deepcopy(translations[sub1])
-                    res_meaning.append("gammaP")
+                    res_meaning.append("cgammaP")
                     if res_sub1 not in translations:
                         translations[res_sub1] = res_meaning
                 if rate == "ppLbs":
                     res_meaning = copy.deepcopy(translations[sub1])
-                    res_meaning.append("betaP")
+                    res_meaning.append("SH2betaP")
                     if res_sub1 not in translations:
                         translations[res_sub1] = res_meaning
                 if rate == "ppLgs":
                     res_meaning = copy.deepcopy(translations[sub1])
-                    res_meaning.append("gammaP")
+                    res_meaning.append("SH2gammaP")
                     if res_sub1 not in translations:
                         translations[res_sub1] = res_meaning
                 if rate == "ppLS":
@@ -148,23 +149,27 @@ def read_variables():
                         translations[res_sub1] = res_meaning
         if two_res_sub:
             if sub1 in translations:
-                if rate == "ppkm1":
+                if rate == "pkm1":
                     res_meaning_2 = copy.deepcopy(translations[sub1])
                     for item in translations[res_sub1]:
-                        res_meaning_2.remove(item)
+                        if item in res_meaning_2:
+                            res_meaning_2.remove(item)
+                        elif item in removal_dict:
+                            res_meaning_2.remove(removal_dict[item])
                     if res_sub2 not in translations:
                         translations[res_sub2] = res_meaning_2
                 if rate == "pkm2":
                     res_meaning_2 = copy.deepcopy(translations[sub1])
-                    print(res_meaning_2)
-                    print(translations[res_sub1])
-                    print(n)
                     for item in translations[res_sub1]:
-                        res_meaning_2.remove(item)
+                        if item in res_meaning_2:
+                            res_meaning_2.remove(item)
+                        elif item in removal_dict:
+                            res_meaning_2.remove(removal_dict[item])
                     if res_sub2 not in translations:
                         translations[res_sub2] = res_meaning_2
-                        #print(translations[res_sub2])
-    print(translations)
+                
+                    
+    #print(translations)
     return translations
 
 read_variables()
