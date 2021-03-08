@@ -1,0 +1,39 @@
+obs : 
+S2                                   Syk
+S77                                  ['Syk', 'cSykP']
+S178                                 ['Syk', 'NoLoopSykP']
+s267                                 ['Syk', 'cSykP', 'NoLoopSykP']
+
+y58 = 2S58 + S98                     2 x ['IgE', 'r', 'cgammaP', 'Syk', 'r', 'cgammaP', 'Syk'] + ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
+
+y95 = S95 + S128                     ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn'] + ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk']
+y96 = S95 + S102                     ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn'] + ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
+y97 = S96 + S105                     ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP'] + ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
+y98 = S96 + S131                     ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP'] + ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk']
+
+y100 = S98 + 2S108                   ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP'] + 2 x ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'r', 'cgammaP', 'Syk', 'cSykP']
+y101 = 2S99 + S135                   2 x ['IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'r', 'cgammaP', 'Syk', 'cLyn'] + ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP']
+y102 = S100 + S152                   ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP'] + ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
+y103 = S100 + S149                   ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP'] + ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
+
+y105 = S102 + S159                   ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP'] + ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
+y106 = 2S103 + S153                  2 x ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'r', 'cgammaP', 'Syk', 'cbetaP'] + ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
+
+y108 = S105 + S160                   ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP'] + ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
+
+y135 = S135 + 2S163                  ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP'] + 2 x ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
+
+y138 = S138 + S182
+y139 = S138 + S181
+
+y148 = S147 + S161
+y149 = S147 + S148
+y150 = S148 + S162
+y151 = S149 + S164
+y152 = S150 + S165
+y153 = S150 + S151
+y154 = S151 + S166
+y155 = S153 + 2S167
+y156 = S154 + S155
+y157 = S154 + S168
+y158 = S155 + S169

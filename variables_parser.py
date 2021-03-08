@@ -114,8 +114,12 @@ def read_variables():
                             res_meaning.append(translations[sub2])
                         if type(translations[sub1]) == list and type(translations[sub2]) == list:
                             res_meaning = copy.deepcopy(translations[sub1])
-                            for item in translations[sub2]:
-                                res_meaning.append(item)
+                            if translations[sub1][-1] == "Syk":
+                                IgEindex = translations[sub1].index("IgE")
+                                res_meaning = translations[sub1][:IgEindex] + translations[sub2] + translations[sub1][IgEindex:]
+                            else:
+                                for item in translations[sub2]:
+                                    res_meaning.append(item)
                     if res_sub not in translations:
                         translations[res_sub] = res_meaning
         if not two_res_sub:
