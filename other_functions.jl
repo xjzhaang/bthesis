@@ -17,14 +17,7 @@ end
 ### Function to find number of nonzero elements in array ###
 #################################################################################################################################################
 function find_nonzero(list)
-    # Gleb: can be done by sum([1 for x in list if x != 0])
-    count = 0
-    for i in 1:length(list)
-        if list[i] != 0
-            count += 1
-        end
-    end
-    return count
+    return sum([1 for x in list if x != 0])
 end
 
 

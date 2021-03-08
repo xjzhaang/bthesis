@@ -49,7 +49,6 @@ function parse_polynomial(txt)
     S = MatrixSpace(R, length(lines), length(lines))
 
     #Create a dictionary sending symbol to v[i]
-    # Gleb: you can do this with a list comprehension
     expr_dict = Dict(Symbol("y$num") => v[num + 1] for num in 0:(length(v) - 1))
     
     poly_system = Array{fmpq_mpoly}([])

@@ -52,9 +52,6 @@ function intersection_calc(parsed_matrix::Array{Int, 2})
         intersect_matrix = find_best_basis(intersect_matrix)
         intersect_matrix = sort_matrix(intersect_matrix)
     end
-    print(size(intersect_matrix)[1])
-    print('\n')
-    print(polytope.dim(matrix_cone))
     return intersect_matrix
 end
 
@@ -95,16 +92,16 @@ function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_
     
     # We initialize the Ring
     variables_str = Array{String}([])
+    new_names = Dict()
     for index in 0:size(cob_matrix)[1] - 1
-        if haskey(new_names, "y$index")
-            push!(variables_str, new_names["y$index"])
-        else
+        #if haskey(new_names, "y$index")
+        #    push!(variables_str, new_names["y$index"])
+        #else
             push!(variables_str, "y$index")
-        end
+        #end
     end
     
     R, y = PolynomialRing(Nemo.QQ, variables_str)
-    S = MatrixSpace(Nemo.QQ, size(cob_matrix)...)
 
     # We first compute M^(-1) y
     A_inv_y = Array{fmpq_mpoly}([])
@@ -213,6 +210,7 @@ function macro_printer(intersect_matrix, varnames, txt)
             print(io, "\n")
         end
     end
+    new_names = Dict()
     return new_names
 end
 

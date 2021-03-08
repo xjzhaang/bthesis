@@ -20,7 +20,7 @@ end
 
 # Numbers are converted to fmpq.
 function f(x::Number, map::Dict{Symbol,fmpq_mpoly})
-    return fmpq(x)
+    return fmpz(x)
 end    
 
 # To parse an expression, convert the head to a singleton
@@ -64,12 +64,7 @@ end
 
 # Exponential
 function f(::Val{:^}, args, map::Dict{Symbol,fmpq_mpoly})
-    # Gleb: do we need this x?
-    x = 1
-    #for arg ∈ args
-     #   x ^= f(arg, map)
-    #end
-    return f(args[1], map) ^ fmpz(numerator(f(args[2], map)))
+    return f(args[1], map) ^ f(args[2], map) #fmpz(numerator(
 end    
 
 # Division
