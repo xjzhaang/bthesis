@@ -1,348 +1,354 @@
-S0 : IgE
-S1 : Lyn
-S2 : Syk
-S3 : r
-S4 : ['IgE', 'r']
-S5 : ['r', 'cLyn']
-S6 : ['IgE', 'r', 'cLyn']
-S7 : ['r', 'IgE', 'r']
-S8 : ['IgE', 'r', 'r', 'cLyn']
-S9 : ['r', 'cLyn', 'IgE', 'r', 'cLyn']
-S10 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP']
-S11 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP']
-S12 : ['IgE', 'r', 'cbetaP']
-S13 : ['r', 'cbetaP']
-S14 : ['IgE', 'r', 'cgammaP']
-S15 : ['r', 'cgammaP']
-S16 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'cLyn']
-S17 : ['r', 'IgE', 'r', 'cbetaP']
-S18 : ['r', 'IgE', 'r', 'cgammaP']
-S19 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'cbetaP']
-S20 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn']
-S21 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk']
-S22 : ['IgE', 'r', 'cbetaP', 'r', 'cbetaP']
-S23 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP']
-S24 : ['IgE', 'r', 'cgammaP', 'r', 'cgammaP']
-S25 : ['IgE', 'r', 'cgammaP', 'cLyn']
-S26 : ['r', 'cgammaP', 'cLyn']
-S27 : ['IgE', 'r', 'cgammaP', 'cbetaP']
-S28 : ['r', 'cgammaP', 'cbetaP']
-S29 : ['IgE', 'r', 'cbetaP', 'SH2Lyn']
-S30 : ['r', 'cbetaP', 'SH2Lyn']
-S31 : ['IgE', 'r', 'cgammaP', 'Syk']
-S32 : ['r', 'cgammaP', 'Syk']
-S33 : ['r', 'IgE', 'r', 'cgammaP', 'cLyn']
-S34 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn']
-S35 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP']
-S36 : ['r', 'IgE', 'r', 'cbetaP', 'SH2Lyn']
-S37 : ['r', 'IgE', 'r', 'cgammaP', 'Syk']
-S38 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cbetaP']
-S39 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'cLyn', 'cgammaP']
-S40 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S41 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP']
-S42 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cSykP']
-S43 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'cLyn']
-S44 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'cbetaP']
-S45 : ['r', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn']
-S46 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk']
-S47 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'cLyn']
-S48 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'cbetaP']
-S49 : ['r', 'cgammaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn']
-S50 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk']
-S51 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'cbetaP']
-S52 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk']
-S53 : ['IgE', 'r', 'cgammaP', 'cbetaP', 'r', 'cgammaP', 'cbetaP']
-S54 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn']
-S55 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk']
-S56 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'r', 'cbetaP', 'SH2Lyn']
-S57 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk']
-S58 : ['IgE', 'r', 'cgammaP', 'Syk', 'r', 'cgammaP', 'Syk']
-S59 : ['IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S60 : ['r', 'cgammaP', 'Syk', 'cLyn']
-S61 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S62 : ['r', 'cgammaP', 'Syk', 'cbetaP']
-S63 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S64 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S65 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S66 : ['r', 'cgammaP', 'Syk', 'cSykP']
-S67 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S68 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S69 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk']
-S70 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'SH2Lyn']
-S71 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S72 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S73 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP']
-S74 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'cgammaP']
-S75 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S76 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'Syk']
-S77 : ['Syk', 'cSykP']
-S78 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S79 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S80 : ['r', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S81 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S82 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S83 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S84 : ['r', 'cgammaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S85 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S86 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S87 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S88 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S89 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S90 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S91 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S92 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S93 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S94 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S95 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn']
-S96 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S97 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S98 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S99 : ['IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'r', 'cgammaP', 'Syk', 'cLyn']
-S100 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S101 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S102 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S103 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'r', 'cgammaP', 'Syk', 'cbetaP']
-S104 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S105 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S106 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP']
-S107 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP']
-S108 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'r', 'cgammaP', 'Syk', 'cSykP']
-S109 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S110 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S111 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S112 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S113 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S114 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S115 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S116 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP']
-S117 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'SH2Lyn']
-S118 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'cgammaP']
-S119 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'SH2Lyn']
-S120 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'SH2gammaP']
-S121 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'Syk', 'cSykP']
-S122 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'cLyn', 'Syk', 'cSykP']
-S123 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP']
-S124 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'cLyn', 'Syk', 'cSykP']
-S125 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP']
-S126 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP']
-S127 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP']
-S128 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk']
-S129 : ['IgE', 'r', 'cgammaP', 'cbetaP', 'r', 'cgammaP', 'cbetaP', 'Syk']
-S130 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'Syk', 'cSykP']
-S131 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk']
-S132 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S133 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S134 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'SH2Lyn', 'Syk', 'cSykP']
-S135 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP']
-S136 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'cgammaP', 'Syk', 'cSykP']
-S137 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'cgammaP', 'Syk', 'cSykP']
-S139 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S140 : ['r', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S141 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S142 : ['r', 'cgammaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S143 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S144 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S145 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S146 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S147 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S148 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S149 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S150 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S151 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S152 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S153 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S154 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S155 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S156 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S157 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S158 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S159 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S160 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S161 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S162 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S163 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'r', 'cgammaP', 'Syk', 'cSykP', 'cLyn']
-S164 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S165 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S166 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S167 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP']
-S168 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S169 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S170 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn']
-S171 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S172 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP']
-S173 : ['IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S174 : ['r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S175 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S176 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S177 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S178 : ['Syk', 'NoLoopSykP']
-S179 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S180 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S181 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S182 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S183 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'cLyn']
-S184 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S185 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S186 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S187 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S188 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S189 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S190 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S191 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S192 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S193 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S194 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S195 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S196 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S197 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S202 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S203 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S205 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S206 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S207 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'SH2Lyn']
-S208 : ['r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S209 : ['IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S210 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S211 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S212 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S213 : ['r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S214 : ['cLyn', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S215 : ['cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S216 : ['cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S217 : ['cbetaP', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S218 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S219 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'cLyn']
-S220 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'cLyn']
-S221 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cSykP']
-S222 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cSykP']
-S223 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cLyn']
-S224 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cLyn']
-S225 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'LoopSykP']
-S226 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S227 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S228 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S229 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S230 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S231 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'SH2Lyn']
-S232 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'SH2Lyn']
-S233 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'SH2Lyn']
-S234 : ['r', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S235 : ['r', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S236 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S237 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S238 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'cLyn']
-S239 : ['r', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S240 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S241 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S242 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S243 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S244 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S245 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S246 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S247 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S248 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S249 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S250 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S251 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP']
-S252 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S253 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S254 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S255 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S256 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S257 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S258 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn', 'SH2Lyn']
-S259 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S260 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S261 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S262 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S263 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S264 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP', 'SH2Lyn']
-S265 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S266 : ['r', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S267 : ['Syk', 'cSykP', 'NoLoopSykP']
-S268 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S269 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S270 : ['r', 'cgammaP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S271 : ['r', 'cgammaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S272 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S273 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'cSykP']
-S274 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S275 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S276 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S277 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S278 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S279 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S280 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S281 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S282 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'NoLoopSykP']
-S283 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S284 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S285 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S286 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S287 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'NoLoopSykP']
-S288 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S289 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S290 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S291 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'SH2Lyn']
-S292 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'LoopSykP']
-S293 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S294 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'cLyn', 'LoopSykP']
-S295 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'LoopSykP']
-S296 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S297 : ['IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP']
-S298 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S299 : ['IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S300 : ['r', 'cgammaP', 'cLyn', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'LoopSykP']
-S301 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'LoopSykP']
-S302 : ['IgE', 'r', 'r', 'cLyn', 'cgammaP', 'Syk', 'cLyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S303 : ['r', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S304 : ['r', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S305 : ['r', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S306 : ['r', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S307 : ['r', 'cLyn', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S308 : ['r', 'cLyn', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S309 : ['r', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S310 : ['r', 'cbetaP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S311 : ['r', 'cbetaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S312 : ['r', 'cgammaP', 'cLyn', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S313 : ['r', 'cgammaP', 'cbetaP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S314 : ['r', 'cgammaP', 'cbetaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S315 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S316 : ['r', 'cbetaP', 'SH2Lyn', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S317 : ['r', 'cbetaP', 'SH2Lyn', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S318 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S319 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S320 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S321 : ['r', 'cgammaP', 'Syk', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'LoopSykP', 'SH2Lyn']
-S322 : ['r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S323 : ['r', 'cgammaP', 'Syk', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'LoopSykP', 'SH2Lyn']
-S324 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S325 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S326 : ['Syk', 'NoLoopSykP', 'r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn']
-S327 : ['r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S328 : ['r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S329 : ['r', 'cgammaP', 'Syk', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP', 'SH2Lyn']
-S330 : ['cLyn', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cLyn', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S331 : ['cLyn', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S332 : ['r', 'cgammaP', 'cLyn', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn', 'Syk', 'cSykP', 'NoLoopSykP']
-S333 : ['cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'cbetaP', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP']
-S334 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn', 'Syk', 'cSykP', 'NoLoopSykP']
-S335 : ['Syk', 'NoLoopSykP', 'r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn', 'SH2Lyn']
-S336 : ['cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'SH2Lyn']
-S337 : ['cbetaP', 'cSykP', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'SH2Lyn']
-S338 : ['r', 'cgammaP', 'cbetaP', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'SH2Lyn']
-S339 : ['r', 'cgammaP', 'cbetaP', 'Syk', 'cSykP', 'IgE', 'r', 'cgammaP', 'Syk', 'NoLoopSykP', 'LoopSykP', 'SH2Lyn']
-S340 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S341 : ['r', 'IgE', 'r', 'cgammaP', 'cbetaP', 'SH2Lyn', 'Syk', 'cSykP', 'NoLoopSykP']
-S342 : ['IgE', 'r', 'r', 'cLyn', 'cbetaP', 'SH2Lyn', 'SH2gammaP', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S343 : ['r', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S344 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S345 : ['r', 'cbetaP', 'SH2Lyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP']
-S346 : ['IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk']
-S347 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cLyn', 'NoLoopSykP', 'Syk', 'cSykP', 'NoLoopSykP']
-S348 : ['r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'Syk', 'cSykP', 'NoLoopSykP']
-S349 : ['r', 'cgammaP', 'cbetaP', 'IgE', 'r', 'cgammaP', 'Syk', 'cbetaP', 'NoLoopSykP', 'SH2Lyn', 'SH2Lyn', 'Syk', 'cSykP', 'NoLoopSykP']
-S350 : ['r', 'cgammaP', 'Syk', 'cSykP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S351 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cLyn', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S352 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'LoopSykP']
-S353 : ['r', 'cgammaP', 'Syk', 'cSykP', 'cbetaP', 'IgE', 'r', 'cbetaP', 'SH2Lyn', 'cgammaP', 'Syk', 'cSykP', 'NoLoopSykP', 'SH2Lyn', 'LoopSykP']
+S0 : Lig(l,l)
+S1 : Lyn(SH2,U)
+S2 : Syk(a~Y,l~Y,tSH2)
+S3 : Rec(a,b~Y,g~Y)
+S4 : Lig(l!1,l).Rec(a!1,b~Y,g~Y)
+S5 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~Y)
+S6 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~Y)
+S7 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~Y)
+S8 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~Y)
+S9 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~Y)
+S10 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~Y)
+S11 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~pY)
+S12 : Lig(l!1,l).Rec(a!1,b~pY,g~Y)
+S13 : Rec(a,b~pY,g~Y)
+S14 : Lig(l!1,l).Rec(a!1,b~Y,g~pY)
+S15 : Rec(a,b~Y,g~pY)
+S16 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~pY)
+S17 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~Y)
+S18 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~pY)
+S19 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~pY)
+S20 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~Y)
+S21 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S22 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~Y)
+S23 : Rec(a!1,b~Y,g~pY).Rec(a!2,b~pY,g~Y)
+S24 : Rec(a!2,b~Y,g~pY).Rec(a!1,b~Y,g~pY)
+S25 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~pY)
+S26 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~pY)
+S27 : Lig(l!1,l).Rec(a!1,b~pY,g~pY)
+S28 : Rec(a,b~pY,g~pY)
+S29 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~Y)
+S30 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~Y)
+S31 : Lig(l!1,l).Rec(a!1,b~Y,g~pY!2).Syk(a~Y,l~Y,tSH2!2)
+S32 : Rec(a,b~Y,g~pY!1).Syk(a~Y,l~Y,tSH2!1)
+S33 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY).Rec(a!2,b~Y,g~Y)
+S34 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~pY!5).Syk(a~Y,l~Y,tSH2!5)
+S35 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~pY)
+S36 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~Y)
+S37 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S38 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S39 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~Y!4,g~pY)
+S40 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~pY)
+S41 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~Y)
+S42 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S43 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY).Rec(a!2,b~pY,g~Y)
+S44 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~pY)
+S45 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~Y).Rec(a!2,b~pY,g~Y)
+S46 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~Y,tSH2!3)
+S47 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY).Rec(a!2,b~Y,g~pY)
+S48 : Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY,g~pY)
+S49 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY!3,g~Y)
+S50 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~Y,g~pY).Syk(a~Y,l~Y,tSH2!3)
+S51 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~pY,g~pY)
+S52 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S53 : Rec(a!2,b~pY,g~pY).Rec(a!1,b~pY,g~pY)
+S54 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~Y).Rec(a!2,b~pY,g~pY)
+S55 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~Y,tSH2!3)
+S56 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~Y)
+S57 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~Y).Syk(a~Y,l~Y,tSH2!4)
+S58 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~Y,tSH2!4)
+S59 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S60 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~pY!2).Syk(a~Y,l~Y,tSH2!2)
+S61 : Lig(l!1,l).Rec(a!1,b~pY,g~pY!2).Syk(a~Y,l~Y,tSH2!2)
+S62 : Rec(a,b~pY,g~pY!1).Syk(a~Y,l~Y,tSH2!1)
+S63 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~pY)
+S64 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~pY)
+S65 : Lig(l!1,l).Rec(a!1,b~Y,g~pY!2).Syk(a~Y,l~pY,tSH2!2)
+S66 : Rec(a,b~Y,g~pY!1).Syk(a~Y,l~pY,tSH2!1)
+S67 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~Y).Syk(a~Y,l~Y,tSH2!4)
+S68 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~pY!5).Syk(a~Y,l~pY,tSH2!5)
+S69 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S70 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~pY)
+S71 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S72 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S73 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY).Syk(a~Y,l~Y,tSH2!5)
+S74 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~pY)
+S75 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!5)
+S76 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~Y).Syk(a~Y,l~Y,tSH2!5)
+S77 : Syk(a~Y,l~pY,tSH2)
+S78 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~Y,tSH2!4)
+S79 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S80 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY).Rec(a!2,b~pY,g~Y)
+S81 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~pY,tSH2!3)
+S82 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY).Syk(a~Y,l~Y,tSH2!4)
+S83 : Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S84 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY!3,g~pY)
+S85 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~Y,g~pY).Syk(a~Y,l~pY,tSH2!3)
+S86 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S87 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S88 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~Y,tSH2!4)
+S89 : Rec(a!1,b~pY,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~Y,tSH2!3)
+S90 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY).Rec(a!2,b~pY,g~pY)
+S91 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~pY,tSH2!3)
+S92 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S93 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~pY)
+S94 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~Y).Syk(a~Y,l~pY,tSH2!4)
+S95 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~Y,tSH2!4)
+S96 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~Y,tSH2!4)
+S97 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY).Syk(a~Y,l~Y,tSH2!4)
+S98 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S99 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~Y,tSH2!6)
+S100 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~Y,tSH2!5)
+S101 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY).Syk(a~Y,l~Y,tSH2!5)
+S102 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S103 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~Y,tSH2!4)
+S104 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S105 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~pY,tSH2!3)
+S106 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY).Rec(a!1,b~pY!4,g~pY)
+S107 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY).Syk(a~Y,l~pY,tSH2!4)
+S108 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S109 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S110 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~pY!2).Syk(a~Y,l~pY,tSH2!2)
+S111 : Lig(l!1,l).Rec(a!1,b~pY,g~pY!2).Syk(a~Y,l~pY,tSH2!2)
+S112 : Rec(a,b~pY,g~pY!1).Syk(a~Y,l~pY,tSH2!1)
+S113 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~pY!3).Syk(a~Y,l~Y,tSH2!3)
+S114 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~pY!2).Syk(a~Y,l~Y,tSH2!2)
+S115 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~Y).Syk(a~Y,l~pY,tSH2!4)
+S116 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S117 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S118 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY).Syk(a~Y,l~pY,tSH2!5)
+S119 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!5)
+S120 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!5)
+S121 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~Y).Syk(a~Y,l~pY,tSH2!5)
+S122 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~pY,tSH2!4)
+S123 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S124 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY).Syk(a~Y,l~pY,tSH2!4)
+S125 : Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S126 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY).Syk(a~Y,l~pY,tSH2!4)
+S127 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S128 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S129 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY).Syk(a~Y,l~pY,tSH2!3)
+S130 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~Y).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S131 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S132 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~pY!3).Syk(a~Y,l~pY,tSH2!3)
+S133 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~pY!2).Syk(a~Y,l~pY,tSH2!2)
+S134 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S135 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S136 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY).Syk(a~Y,l~pY,tSH2!5)
+S137 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!5)
+S138 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S139 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~Y,tSH2!4)
+S140 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~Y,l~pY,tSH2!4)
+S141 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY!3,g~pY!4).Syk(a~Y,l~Y,tSH2!4)
+S142 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY!3,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S143 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~Y,tSH2!4)
+S144 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~Y,l~pY,tSH2!4)
+S145 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~pY!5).Syk(a~Y,l~Y,tSH2!5)
+S146 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~pY!5).Syk(a~Y,l~pY,tSH2!5)
+S147 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~Y,tSH2!5)
+S148 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S149 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S150 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~Y,tSH2!6)
+S151 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S152 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S153 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S154 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~Y,tSH2!4)
+S155 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S156 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4)
+S157 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!1,b~pY!4,g~pY!5).Rec(a!2,b~pY!3,g~pY).Syk(a~Y,l~Y,tSH2!5)
+S158 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!1,b~pY!4,g~pY!5).Rec(a!2,b~pY!3,g~pY).Syk(a~Y,l~pY,tSH2!5)
+S159 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S160 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S161 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S162 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S163 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S164 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S165 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!6).Syk(a~Y,l~pY,tSH2!5)
+S166 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S167 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~Y,l~pY,tSH2!4)
+S168 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~Y,l~pY,tSH2!5)
+S169 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~Y,l~pY,tSH2!4)
+S170 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~Y,tSH2!6)
+S171 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S172 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~Y,l~pY,tSH2!6)
+S173 : Lig(l!1,l).Rec(a!1,b~Y,g~pY!2).Syk(a~pY,l~Y,tSH2!2)
+S174 : Rec(a,b~Y,g~pY!1).Syk(a~pY,l~Y,tSH2!1)
+S175 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S176 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S177 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~Y,g~pY).Syk(a~pY,l~Y,tSH2!3)
+S178 : Syk(a~pY,l~Y,tSH2)
+S179 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S180 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!3)
+S181 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S182 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!3)
+S183 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S184 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S185 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S186 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S187 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S188 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S189 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!3)
+S190 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S191 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S192 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S193 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S194 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!3)
+S195 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S196 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY!6).Syk(a~Y,l~pY,tSH2!6).Syk(a~pY,l~Y,tSH2!5)
+S197 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S198 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S199 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S200 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S201 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~Y,tSH2!3)
+S202 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S203 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~Y,tSH2!3)
+S204 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~Y).Syk(a~pY,l~Y,tSH2!4)
+S205 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY).Syk(a~pY,l~Y,tSH2!4)
+S206 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S207 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S208 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~pY!2).Syk(a~pY,l~Y,tSH2!2)
+S209 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S210 : Lig(l!1,l).Rec(a!1,b~pY,g~pY!2).Syk(a~pY,l~Y,tSH2!2)
+S211 : Rec(a,b~pY,g~pY!1).Syk(a~pY,l~Y,tSH2!1)
+S212 : Lig(l!1,l).Rec(a!1,b~Y,g~pY!2).Syk(a~pY,l~pY,tSH2!2)
+S213 : Rec(a,b~Y,g~pY!1).Syk(a~pY,l~pY,tSH2!1)
+S214 : Lyn(SH2,U!1).Rec(a,b~Y!1,g~pY!2).Syk(a~pY,l~pY,tSH2!2)
+S215 : Lig(l!1,l).Lyn(SH2,U!2).Rec(a!1,b~Y!2,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S216 : Lig(l!1,l).Rec(a!1,b~pY,g~pY!2).Syk(a~pY,l~pY,tSH2!2)
+S217 : Rec(a,b~pY,g~pY!1).Syk(a~pY,l~pY,tSH2!1)
+S218 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY).Syk(a~pY,l~Y,tSH2!4)
+S219 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S220 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S221 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S222 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S223 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S224 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S225 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S226 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S227 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S228 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!6).Syk(a~pY,l~Y,tSH2!5)
+S229 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S230 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S231 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S232 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S233 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S234 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~pY!5).Syk(a~pY,l~Y,tSH2!5)
+S235 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S236 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~Y).Syk(a~pY,l~Y,tSH2!4)
+S237 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S238 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY).Syk(a~pY,l~Y,tSH2!5)
+S239 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~Y,tSH2!5)
+S240 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~Y).Syk(a~pY,l~Y,tSH2!5)
+S241 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~Y,tSH2!4)
+S242 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S243 : Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S244 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY).Syk(a~pY,l~Y,tSH2!4)
+S245 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S246 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY).Syk(a~pY,l~Y,tSH2!3)
+S247 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~Y).Rec(a!2,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S248 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~pY!3).Syk(a~pY,l~Y,tSH2!3)
+S249 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~pY!2).Syk(a~pY,l~Y,tSH2!2)
+S250 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S251 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY).Syk(a~pY,l~Y,tSH2!5)
+S252 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~Y,tSH2!5)
+S253 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~Y,tSH2!4)
+S254 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY).Rec(a!1,b~pY!3,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S255 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~Y,tSH2!4)
+S256 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY).Rec(a!2,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!4)
+S257 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~pY!5).Syk(a~pY,l~Y,tSH2!5)
+S258 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY).Syk(a~pY,l~Y,tSH2!5)
+S259 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S260 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S261 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!6).Syk(a~pY,l~Y,tSH2!5)
+S262 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S263 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S264 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!1,b~pY!4,g~pY!5).Rec(a!2,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S265 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!1,b~pY!4,g~pY!5).Rec(a!2,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S266 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~Y,g~pY).Syk(a~pY,l~pY,tSH2!3)
+S267 : Syk(a~pY,l~pY,tSH2)
+S268 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S269 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~pY,tSH2!3)
+S270 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY).Syk(a~pY,l~pY,tSH2!4)
+S271 : Rec(a!1,b~Y,g~pY).Rec(a!2,b~pY,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S272 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY).Syk(a~pY,l~pY,tSH2!5)
+S273 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY!6).Syk(a~Y,l~pY,tSH2!6).Syk(a~pY,l~pY,tSH2!5)
+S274 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S275 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S276 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S277 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S278 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!3)
+S279 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S280 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S281 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S282 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S283 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~Y,tSH2!6).Syk(a~pY,l~pY,tSH2!5)
+S284 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S285 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~Y,l~pY,tSH2!6).Syk(a~pY,l~pY,tSH2!5)
+S286 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~Y,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S287 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S288 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S289 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~Y,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S290 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~Y,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S291 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~Y,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S292 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S293 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S294 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S295 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S296 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S297 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~Y,tSH2!4)
+S298 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!3)
+S299 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S300 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~Y,g~pY!5).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S301 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S302 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~Y!3,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S303 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~Y,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S304 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~Y).Syk(a~pY,l~pY,tSH2!4)
+S305 : Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S306 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S307 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~Y!4,g~pY!5).Syk(a~pY,l~pY,tSH2!5)
+S308 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S309 : Rec(a!1,b~Y,g~pY!3).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~pY,tSH2!3)
+S310 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~pY,tSH2!4)
+S311 : Rec(a!2,b~pY,g~Y).Rec(a!1,b~pY,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S312 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S313 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~pY,tSH2!4)
+S314 : Rec(a!1,b~pY,g~pY!3).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~pY,tSH2!3)
+S315 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~Y).Syk(a~pY,l~pY,tSH2!4)
+S316 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~pY!3,g~Y).Syk(a~pY,l~pY,tSH2!5)
+S317 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S318 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY).Syk(a~pY,l~pY,tSH2!4)
+S319 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!1,b~Y!4,g~pY!5).Rec(a!2,b~pY!3,g~pY).Syk(a~pY,l~pY,tSH2!5)
+S320 : Lyn(SH2!3,U).Rec(a!2,b~pY!3,g~pY).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S321 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~Y,tSH2!5)
+S322 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S323 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S324 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S325 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~Y,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S326 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!4)
+S327 : Lyn(SH2,U!3).Rec(a!1,b~Y!3,g~pY!4).Rec(a!2,b~Y,g~pY!5).Syk(a~pY,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S328 : Rec(a!2,b~Y,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S329 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S330 : Lyn(SH2,U!3).Lyn(SH2,U!4).Rec(a!2,b~Y!3,g~pY!5).Rec(a!1,b~Y!4,g~pY!6).Syk(a~pY,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S331 : Lyn(SH2,U!3).Rec(a!2,b~Y!3,g~pY!4).Rec(a!1,b~pY,g~pY!5).Syk(a~pY,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S332 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~pY,l~Y,tSH2!6).Syk(a~pY,l~pY,tSH2!5)
+S333 : Rec(a!2,b~pY,g~pY!3).Rec(a!1,b~pY,g~pY!4).Syk(a~pY,l~pY,tSH2!3).Syk(a~pY,l~pY,tSH2!4)
+S334 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S335 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~Y,tSH2!6)
+S336 : Lig(l!1,l).Lyn(SH2!2,U).Rec(a!1,b~pY!2,g~pY!3).Syk(a~pY,l~pY,tSH2!3)
+S337 : Lyn(SH2!1,U).Rec(a,b~pY!1,g~pY!2).Syk(a~pY,l~pY,tSH2!2)
+S338 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY).Rec(a!2,b~pY!3,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S339 : Lyn(SH2!3,U).Rec(a!1,b~Y,g~pY!4).Rec(a!2,b~pY!3,g~pY!5).Syk(a~pY,l~Y,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S340 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~Y).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~pY,tSH2!5)
+S341 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~Y).Rec(a!1,b~pY!3,g~pY!4).Syk(a~pY,l~pY,tSH2!4)
+S342 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~pY,tSH2!5)
+S343 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~Y).Syk(a~pY,l~pY,tSH2!4)
+S344 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY).Syk(a~pY,l~pY,tSH2!4)
+S345 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~Y).Rec(a!1,b~pY!4,g~pY!5).Syk(a~pY,l~pY,tSH2!5)
+S346 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY).Syk(a~pY,l~pY,tSH2!5)
+S347 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S348 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S349 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~pY,l~Y,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S350 : Lyn(SH2!3,U).Rec(a!2,b~Y,g~pY!4).Rec(a!1,b~pY!3,g~pY!5).Syk(a~pY,l~pY,tSH2!4).Syk(a~pY,l~pY,tSH2!5)
+S351 : Lyn(SH2!3,U).Lyn(SH2,U!4).Rec(a!2,b~Y!4,g~pY!5).Rec(a!1,b~pY!3,g~pY!6).Syk(a~pY,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!6)
+S352 : Lyn(SH2!3,U).Rec(a!1,b~pY!3,g~pY!4).Rec(a!2,b~pY,g~pY!5).Syk(a~pY,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!4)
+S353 : Lyn(SH2!3,U).Lyn(SH2!4,U).Rec(a!2,b~pY!3,g~pY!5).Rec(a!1,b~pY!4,g~pY!6).Syk(a~pY,l~pY,tSH2!5).Syk(a~pY,l~pY,tSH2!6)

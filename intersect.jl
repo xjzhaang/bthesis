@@ -52,6 +52,8 @@ function intersection_calc(parsed_matrix::Array{Int, 2})
         intersect_matrix = find_best_basis(intersect_matrix)
         intersect_matrix = sort_matrix(intersect_matrix)
     end
+
+    print(size(intersect_matrix)[2])
     return intersect_matrix
 end
 
@@ -83,22 +85,14 @@ end
 #################################################################################################################################################
 ### Function to find new polynomials
 ### Input: cob_matrix, cob_matrix_inverse, old_poly_system
-# Gleb: new_names?
 ### Output: new polynomial system of type Array{fmpq_mpoly}
 ### We use the equation y' = M f( M^(-1) y) where M, M^(-1) are the change of basis matrices
 #################################################################################################################################################
 
-function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly}, new_names)
+function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly})
     
     # We initialize the Ring
-    variables_str = Array{String}([])
-    for index in 0:size(cob_matrix)[1] - 1
-        if haskey(new_names, "y$index")
-           push!(variables_str, new_names["y$index"])
-        else
-            push!(variables_str, "y$index")
-        end
-    end
+    variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
     
     R, y = PolynomialRing(Nemo.QQ, variables_str)
 
@@ -231,10 +225,10 @@ function get_new_matrix(matrix_txt, is_model)
     intersect_matrix = intersection_calc(parsed_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
     if is_model == "fceri"
-        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
-    end
-    if is_model == "Barua"
-        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+       new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    #end
+    #if is_model == "Barua"
+     #   new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     end
 end
 
@@ -247,15 +241,12 @@ function get_new_poly(matrix_txt, poly_txt, is_model)
     old_poly_system= parse_polynomial(poly_txt)
     if is_model == "fceri"
         new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
-    else
-        new_names = Dict()
+    #else if is_model == "Barua"
+     #   new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+    #else
+     #   new_names = Dict()
     end
-    if is_model == "Barua"
-        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
-    else
-        new_names = Dict()
-    end
-    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, new_names)
+    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system)
     new_poly_printer(new_poly, poly_txt)
 end
 
