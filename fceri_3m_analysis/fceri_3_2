@@ -1,4 +1,10 @@
-y7 : [(['Rec(b,g)', '2x'], ['Rec(b,g)']), (['Rec(b,gp)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(a,l)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(a,lp)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(ap,l)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(ap,lp)'], ['Rec(b,g)'])]
+y7 : [(['Rec(b,g)', '2x'], ['Rec(b,g)']), 
+(['Rec(b,gp)'], ['Rec(b,g)']), 
+(['Rec(b,gp)', 'Syk(a,l)'], ['Rec(b,g)']), 
+(['Rec(b,gp)', 'Syk(a,lp)'], ['Rec(b,g)']), 
+(['Rec(b,gp)', 'Syk(ap,l)'], ['Rec(b,g)']), 
+(['Rec(b,gp)', 'Syk(ap,lp)'], ['Rec(b,g)'])]
+
 y8 : [(['Rec(b,g)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Lyn(c)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(a,l)', 'Lyn(c)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(a,lp)', 'Lyn(c)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(ap,l)', 'Lyn(c)'], ['Rec(b,g)']), (['Rec(b,gp)', 'Syk(ap,lp)', 'Lyn(c)'], ['Rec(b,g)'])]
 y9 : [(['Rec(b,g)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(a,l)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(a,lp)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(ap,l)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(ap,lp)'], ['Rec(b,g)', 'Lyn(c)'])]
 y10 : [(['Rec(b,g)', 'Lyn(c)', '2x'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Lyn(c)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(a,l)', 'Lyn(c)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(a,lp)', 'Lyn(c)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(ap,l)', 'Lyn(c)'], ['Rec(b,g)', 'Lyn(c)']), (['Rec(b,gp)', 'Syk(ap,lp)', 'Lyn(c)'], ['Rec(b,g)', 'Lyn(c)'])]
