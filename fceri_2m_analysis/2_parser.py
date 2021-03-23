@@ -149,12 +149,13 @@ def compare_outputs():
 
 compare_outputs()
 
-exit()
+#exit()
 
 with open('fceri_meanings','w') as afile:
     names_dict = parse_fceri_meanings()
     list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
     [afile.write(f'{st}\n') for st in list_of_strings ]
+
 with open('fceri_eq','w') as afile:
     eq = parse_eq()
     list_of_strings = [ f'{key} : {eq[key]}' for key in natsorted(eq)]
