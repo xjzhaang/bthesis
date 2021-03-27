@@ -226,9 +226,9 @@ function get_new_matrix(matrix_txt, is_model)
     new_matrix_printer(intersect_matrix, matrix_txt)
     if is_model == "fceri"
        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
-    #end
-    #if is_model == "Barua"
-     #   new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+    end
+    if is_model == "Barua"
+       new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     end
 end
 
@@ -241,10 +241,10 @@ function get_new_poly(matrix_txt, poly_txt, is_model)
     old_poly_system= parse_polynomial(poly_txt)
     if is_model == "fceri"
         new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
-    #else if is_model == "Barua"
-     #   new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
-    #else
-     #   new_names = Dict()
+    elseif is_model == "Barua"
+        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+    else
+        new_names = Dict()
     end
     new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system)
     new_poly_printer(new_poly, poly_txt)
