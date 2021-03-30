@@ -1,0 +1,77 @@
+y11 : ['J(K!1,Y1~U,Y2~U).R(X!1,i~on,l)', '
+	J(K!1,Y1~U,Y2~U).L(r1!2,r2).R(X!1,i~on,l!2)', 
+	'J(K!1,Y1~U,Y2~U).L(r1!2,r2!3).R(X!1,i~on,l!3).R(X,i~on,l!2)', 
+	'J(K!1,Y1~U,Y2~U).L(r1,r2!2).R(X!1,i~on,l!2)', 
+	'J(K!1,Y1~U,Y2~U).L(r1!2,r2!3).R(X!1,i~on,l!2).R(X,i~on,l!3)']
+
+y78 : ['J(K!1,Y1~U,Y2~P).L(r1!2,r2!3).R(X!1,i~on,l!3).R(X,i~on,l!2)', 
+	'J(K!1,Y1~U,Y2~P).L(r1!2,r2!3).R(X!1,i~on,l!2).R(X,i~on,l!3)', 
+	'J(K!1,Y1~U,Y2~P).R(X!1,i~on,l)', 
+	'J(K!1,Y1~U,Y2~P).L(r1!2,r2).R(X!1,i~on,l!2)', 
+	'J(K!1,Y1~U,Y2~P).L(r1,r2!2).R(X!1,i~on,l!2)']
+
+y79 : ['J(K!1,Y1~P,Y2~U).L(r1!2,r2!3).R(X!1,i~on,l!3).R(X,i~on,l!2)',
+	 'J(K!1,Y1~P,Y2~U).L(r1!2,r2!3).R(X!1,i~on,l!2).R(X,i~on,l!3)',
+	  'J(K!1,Y1~P,Y2~U).R(X!1,i~on,l)', 
+	  'J(K!1,Y1~P,Y2~U).L(r1!2,r2).R(X!1,i~on,l!2)', 
+	  'J(K!1,Y1~P,Y2~U).L(r1,r2!2).R(X!1,i~on,l!2)']
+  
+y175 : ['J(K!1,Y1~P,Y2~P).L(r1!2,r2!3).R(X!1,i~on,l!3).R(X,i~on,l!2)', 
+	'J(K!1,Y1~P,Y2~P).L(r1!2,r2!3).R(X!1,i~on,l!2).R(X,i~on,l!3)',
+	 'J(K!1,Y1~P,Y2~P).R(X!1,i~on,l)', '
+	 J(K!1,Y1~P,Y2~P).L(r1!2,r2).R(X!1,i~on,l!2)', 
+	 'J(K!1,Y1~P,Y2~P).L(r1,r2!2).R(X!1,i~on,l!2)']
+
+y176 : ['J(K!1,Y1~P!2,Y2~U).L(r1!3,r2!4).R(X!1,i~on,l!4).R(X,i~on,l!3).S(DD,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~U).L(r1!3,r2!4).R(X!1,i~on,l!3).R(X,i~on,l!4).S(DD,PH,SH2!2)',
+	 'J(K!1,Y1~P!2,Y2~U).R(X!1,i~on,l).S(DD,PH,SH2!2)', 
+	 'J(K!1,Y1~P!2,Y2~U).L(r1!3,r2).R(X!1,i~on,l!3).S(DD,PH,SH2!2)', 
+	 'J(K!1,Y1~P!2,Y2~U).L(r1,r2!3).R(X!1,i~on,l!3).S(DD,PH,SH2!2)']
+ 
+y177 : ['J(K!1,Y1~P!2,Y2~U).L(r1!3,r2!4).R(X!1,i~on,l!4).R(X,i~on,l!3).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~U).L(r1!3,r2!4).R(X!1,i~on,l!3).R(X,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~U).R(X!1,i~on,l).S(DD!3,PH,SH2!2).S(DD!3,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~U).L(r1!3,r2).R(X!1,i~on,l!3).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~U).L(r1,r2!3).R(X!1,i~on,l!3).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2)']
+
+y259 : ['J(K!1,Y1~P!2,Y2~P).L(r1!3,r2!4).R(X!1,i~on,l!4).R(X,i~on,l!3).S(DD,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1!3,r2!4).R(X!1,i~on,l!3).R(X,i~on,l!4).S(DD,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).R(X!1,i~on,l).S(DD,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1!3,r2).R(X!1,i~on,l!3).S(DD,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1,r2!3).R(X!1,i~on,l!3).S(DD,PH,SH2!2)']
+
+y260 : ['J(K!1,Y1~P!2,Y2~P).L(r1!3,r2!4).R(X!1,i~on,l!4).R(X,i~on,l!3).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1!3,r2!4).R(X!1,i~on,l!3).R(X,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~P).R(X!1,i~on,l).S(DD!3,PH,SH2!2).S(DD!3,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1!3,r2).R(X!1,i~on,l!3).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2)', 
+	'J(K!1,Y1~P!2,Y2~P).L(r1,r2!3).R(X!1,i~on,l!3).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2)']
+
+y261 : ['J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~U).L(r1!4,r2!5).R(X!1,i~on,l!5).R(X,i~on,l!4).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~U).L(r1!4,r2!5).R(X!1,i~on,l!4).R(X,i~on,l!5).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)',
+	 'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~U).R(X!1,i~on,l).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2!3)', 
+	 'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~U).L(r1!4,r2).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)', 
+	 'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~U).L(r1,r2!4).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)']
+ 
+y267 : ['J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~P).R(X!1,i~on,l).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~P).L(r1!4,r2).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~P).L(r1,r2!4).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~P).L(r1!4,r2!5).R(X!1,i~on,l!5).R(X,i~on,l!4).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~U).J(K,Y1~P!3,Y2~P).L(r1!4,r2!5).R(X!1,i~on,l!4).R(X,i~on,l!5).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)']
+
+y268 : ['J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~U).R(X!1,i~on,l).S(DD!4,PH,SH2!3).S(DD!4,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~U).L(r1!4,r2).R(X!1,i~on,l!4).S(DD!5,PH,SH2!3).S(DD!5,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~U).L(r1,r2!4).R(X!1,i~on,l!4).S(DD!5,PH,SH2!3).S(DD!5,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~U).L(r1!4,r2!5).R(X!1,i~on,l!5).R(X,i~on,l!4).S(DD!6,PH,SH2!3).S(DD!6,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~U).L(r1!4,r2!5).R(X!1,i~on,l!4).R(X,i~on,l!5).S(DD!6,PH,SH2!3).S(DD!6,PH,SH2!2)']
+
+y280 : ['J(K!1,Y1~P!2,Y2~P).J(K!3,Y1~P!4,Y2~U).R(X!1,i~on,l).R(X!3,i~on,l).S(DD!5,PH,SH2!4).S(DD!5,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K!3,Y1~P!4,Y2~U).L(r1!5,r2).R(X!3,i~on,l!5).R(X!1,i~on,l).S(DD!6,PH,SH2!4).S(DD!6,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K!3,Y1~P!4,Y2~U).L(r1!5,r2).R(X!1,i~on,l!5).R(X!3,i~on,l).S(DD!6,PH,SH2!4).S(DD!6,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K!3,Y1~P!4,Y2~U).L(r1,r2!5).R(X!3,i~on,l!5).R(X!1,i~on,l).S(DD!6,PH,SH2!4).S(DD!6,PH,SH2!2)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K!3,Y1~P!4,Y2~U).L(r1,r2!5).R(X!1,i~on,l!5).R(X!3,i~on,l).S(DD!6,PH,SH2!4).S(DD!6,PH,SH2!2)']
+
+y291 : ['J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~P).L(r1!4,r2!5).R(X!1,i~on,l!5).R(X,i~on,l!4).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~P).L(r1!4,r2!5).R(X!1,i~on,l!4).R(X,i~on,l!5).S(DD!6,PH,SH2!2).S(DD!6,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~P).R(X!1,i~on,l).S(DD!4,PH,SH2!2).S(DD!4,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~P).L(r1!4,r2).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)', 
+	'J(K!1,Y1~P!2,Y2~P).J(K,Y1~P!3,Y2~P).L(r1,r2!4).R(X!1,i~on,l!4).S(DD!5,PH,SH2!2).S(DD!5,PH,SH2!3)']
