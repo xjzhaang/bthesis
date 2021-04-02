@@ -12,19 +12,19 @@ include("intersect.jl")
 ``` 
 To get the new macro-variables in a [n]m_new.txt file of matrices:
 ```sh 
-get_new_matrix("[n]m.txt") 
+get_new_matrix("[n]m.txt", case_study_name) 
 ``` 
 
 To get the new ODE system of polynomials in a [n]p_new.txt file: 
 ```sh
-get_new_poly("[n]p.txt") 
+get_new_poly("[n]m.txt", "[n]p.txt", case_study_name) 
 ``` 
 
 To get both outputs for 1~i reduced models of case studies:
 ```sh
 run_all_[case_study_name](i)
 ```
-Available case study names: PP, fceri, Barua
+Available case study names: "PP", "fceri", "Barua"
 
 
 
