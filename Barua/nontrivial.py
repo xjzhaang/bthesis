@@ -1,5 +1,5 @@
 def nontrivial():
-    f = open("3m_macrovariables.txt", "r")
+    f = open("2m_macrovariables.txt", "r")
     lines = f.readlines()
     new_lines = []
     for l in lines:
@@ -7,6 +7,6 @@ def nontrivial():
             new_lines.append(l)
     return new_lines
 
-with open('3m_nontrivial.txt','w') as afile:
+with open('2m_nontrivial.txt','w') as afile:
     new_lines = nontrivial()
     [afile.write(f'{st}') for st in new_lines]

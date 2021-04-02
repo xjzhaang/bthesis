@@ -49,7 +49,7 @@ function intersection_calc(parsed_matrix::Array{Int, 2})
     if polytope.dim(matrix_cone) < rank(S(parsed_matrix))
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
-        #intersect_matrix = find_best_basis(intersect_matrix)
+        intersect_matrix = find_best_basis(intersect_matrix)
         intersect_matrix = sort_matrix(intersect_matrix)
     end
 
@@ -225,10 +225,11 @@ function get_new_matrix(matrix_txt, is_model)
     intersect_matrix = intersection_calc(parsed_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
     if is_model == "fceri"
-       new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
-    end
-    if is_model == "Barua"
-       new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+    elseif is_model == "Barua"
+        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+    else
+        new_names = Dict()
     end
 end
 
@@ -265,7 +266,7 @@ function run_all_fceri(n)
 end
 
 function run_all_Barua(n)
-    for i in 2:n
+    for i in 1:n
         get_new_matrix("Barua/$i" * "m.txt", "Barua")
         get_new_poly("Barua/$i" * "m.txt", "Barua/$i" * "p.txt", "Barua")
     end

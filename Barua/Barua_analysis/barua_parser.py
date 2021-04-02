@@ -44,7 +44,27 @@ with open('barua_meanings','w') as afile:
     list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
     [afile.write(f'{st}\n') for st in list_of_strings ]
 
-with open('2m/barua_eq.txt','w') as afile:
-    names_dict = parse_eq("2m/2m_nontrivial.txt")
+with open('3m/barua_2.txt','w') as afile:
+    names_dict = parse_eq("3m/2_var.txt")
+    list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
+    [afile.write(f'{st}\n') for st in list_of_strings ]
+with open('3m/barua_3.txt','w') as afile:
+    names_dict = parse_eq("3m/3_var.txt")
+    list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
+    [afile.write(f'{st}\n') for st in list_of_strings ]
+with open('3m/barua_4.txt','w') as afile:
+    names_dict = parse_eq("3m/4_var.txt")
+    list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
+    [afile.write(f'{st}\n') for st in list_of_strings ]
+with open('3m/barua_5.txt','w') as afile:
+    names_dict = parse_eq("3m/5_var.txt")
+    list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
+    [afile.write(f'{st}\n') for st in list_of_strings ]
+with open('3m/barua_7.txt','w') as afile:
+    names_dict = parse_eq("3m/7_var.txt")
+    list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
+    [afile.write(f'{st}\n') for st in list_of_strings ]
+with open('3m/barua_8.txt','w') as afile:
+    names_dict = parse_eq("3m/8_var.txt")
     list_of_strings = [ f'{key} : {names_dict[key]}' for key in natsorted(names_dict)]
     [afile.write(f'{st}\n') for st in list_of_strings ]
