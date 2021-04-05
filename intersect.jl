@@ -46,14 +46,13 @@ function intersection_calc(parsed_matrix::Array{Int, 2})
     intersect_matrix = sort_matrix(intersect_matrix)
 
     S = MatrixSpace(Nemo.QQ, size(parsed_matrix)...)
-    if polytope.dim(matrix_cone) < rank(S(parsed_matrix))
+    if polytope.dim(intersect_cone) < rank(S(parsed_matrix))
         throw(DimensionMismatch("No suitable matrix found"))
     elseif size(intersect_matrix)[1] > polytope.dim(matrix_cone)
         intersect_matrix = find_best_basis(intersect_matrix)
         intersect_matrix = sort_matrix(intersect_matrix)
     end
 
-    print(size(intersect_matrix)[2])
     return intersect_matrix
 end
 

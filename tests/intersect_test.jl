@@ -22,8 +22,8 @@ end
 
 @testset "Mergesort matrix test" begin
     #test if mergesorting for turning matrix into triangular form works 
-    @test merge_sort_aux([0 -2 1 0; 1 0 0 0; 0 0 2 1]) == test_matrix1
-    @test merge_sort_aux([0 0 2 1; 0 4 0 1; 1 0 0 0]) == test_matrix1_res
+    @test sort_matrix([0 -2 1 0; 1 0 0 0; 0 0 2 1]) == test_matrix1
+    @test sort_matrix([0 0 2 1; 0 4 0 1; 1 0 0 0]) == test_matrix1_res
     println("\n")
 end
 @testset "Intersection test" begin
@@ -43,14 +43,18 @@ end
     @test typeof(cob_matrix_inverse) == fmpq_mat
 
     #test cob results
-    @test cob_matrix == S([1 0 0; 0 -1//2 1//2; 0 0 1])
-    @test cob_matrix_inverse == S([1 0 0; 0 -2 1; 0 0 1])
+    @test cob_matrix == S([1 0 0; 0 -2 1; 0 0 1])
+    @test cob_matrix_inverse == S([1 0 0; 0 -1//2 1//2; 0 0 1])
+
+    S1 = MatrixSpace(Nemo.QQ, 3, 4)
+    @test cob_matrix_inverse * S1(test_matrix1_res) == S1(test_matrix1)
+    @test cob_matrix * S1(test_matrix1) == S1(test_matrix1_res)
     println("\n")
 end
 
 @testset "Polynomial calc test" begin
-    new_poly1 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1, R(0)]))
-    new_poly2 = poly_calc(S([1 0 0; 0 -1//2 1//2; 0 0 1]),  S([1 0 0; 0 -2 1; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2]))
+    new_poly1 = poly_calc(S([1 0 0; 0 -2 1; 0 0 1]),S([1 0 0; 0 -1//2 1//2; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y2, -y0*y2 + y1, R(0)]), Dict())
+    new_poly2 = poly_calc(S([1 0 0; 0 -2 1; 0 0 1]), S([1 0 0; 0 -1//2 1//2; 0 0 1]), Array{fmpq_mpoly}([y0*y1 - y0, y2*y0*y1, y1*y1 - y2*y2]), Dict())
 
     #test types
     @test typeof(new_poly1) == Array{Any,1}
@@ -59,7 +63,7 @@ end
     @test typeof(new_poly2[3]) == fmpq_mpoly
 
     #test results
-    @test new_poly1 == [-2*y0*y1 + y0*y2 - y2, 1//2*y0*y2 + y1 - 1//2*y2, 0]
-    @test new_poly2 == [-2*y0*y1 + y0*y2 - y0, y0*y1*y2 - 1//2*y0*y2^2 + 2*y1^2 - 2*y1*y2, 4*y1^2 - 4*y1*y2]
+    @test new_poly1 == [-1//2*y0*y1 + 1//2*y0*y2 - y2, 2*y0*y2 + y1 - y2, 0]
+    @test new_poly2 == [-1//2*y0*y1 + 1//2*y0*y2 - y0, y0*y1*y2 - y0*y2^2 + 1//4*y1^2 - 1//2*y1*y2 - 3//4*y2^2, 1//4*y1^2 - 1//2*y1*y2 - 3//4*y2^2]
     println("\n")
 end
