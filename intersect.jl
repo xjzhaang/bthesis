@@ -74,8 +74,8 @@ function cob_calc(parsed_matrix::Array{Int, 2}, intersect_matrix::Array{Int, 2})
     intersect_matrix = S(intersect_matrix)
 
     #compute change of basis matrix and its inverse
-    cob_matrix = solve_left(intersect_matrix, parsed_matrix)
-    cob_matrix_inverse = inv(cob_matrix)
+    cob_matrix_inverse = solve_left(intersect_matrix, parsed_matrix)
+    cob_matrix = inv(cob_matrix_inverse)
 
     return cob_matrix, cob_matrix_inverse
 end
@@ -84,35 +84,48 @@ end
 
 #################################################################################################################################################
 ### Function to find new polynomials
-### Input: cob_matrix, cob_matrix_inverse, old_poly_system
+### Input: cob_matrix, cob_matrix_inverse, old_poly_system, trivial_names
 ### Output: new polynomial system of type Array{fmpq_mpoly}
 ### We use the equation y' = M f( M^(-1) y) where M, M^(-1) are the change of basis matrices
+### trivial_names parameter is the trivial macro-variables. We use their original names for simplicity.
 #################################################################################################################################################
 
-function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly})
+function poly_calc(cob_matrix::fmpq_mat, cob_matrix_inverse::fmpq_mat, old_poly_system::Array{fmpq_mpoly}, trivial_names)
     
     # We initialize the Ring
-    variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
-    
+    #variables_str = ["y$index" for index in 0:size(cob_matrix)[1] - 1]
+    variables_str = Array{String}([])
+    for index in 0:size(cob_matrix)[1] - 1
+        if haskey(trivial_names, "y$index")
+            push!(variables_str, trivial_names["y$index"])
+        else
+            push!(variables_str, "y$index")
+        end
+    end
     R, y = PolynomialRing(Nemo.QQ, variables_str)
 
     # We first compute M^(-1) y
     A_inv_y = Array{fmpq_mpoly}([])
     for i in 1:size(cob_matrix_inverse)[1]
-        f = sum([cob_matrix_inverse[i, j] * y[j] for j in 1:size(cob_matrix_inverse)[2]])
+        f = 0
+        for j in 1:size(cob_matrix_inverse)[2]
+            f += cob_matrix_inverse[i, j] * y[j]
+        end
+        #f = sum([cob_matrix_inverse[i, j] * y[j] for j in 1:size(cob_matrix_inverse)[2]])
         push!(A_inv_y, f)
     end
+    #print(A_inv_y)
 
     # Now, we evaluate M^(-1) y in f(y1,...yn)
     f_y = Array{Any}(map(p -> evaluate(p, A_inv_y), old_poly_system))
-
+    #print(f_y)
     #Finally, we multiply from the left by M
     new_poly = []
     for i in 1:nrows(cob_matrix)
         y_prime = sum([cob_matrix[i, j] * f_y[j] for j in 1:size(cob_matrix)[2]])
         push!(new_poly, y_prime)
     end
-    
+
     return new_poly
 end
 
@@ -180,7 +193,7 @@ end
 
 function macro_printer(intersect_matrix, varnames, txt)
     variables_dict = parse_varnames(varnames)
-    new_names = Dict()
+    trivial_names = Dict()
     open(split(txt, ".txt")[1] * "_macrovariables.txt", "w") do io
         for row_index in 0:size(intersect_matrix)[1] - 1
             str = "y" * "$row_index = "
@@ -197,13 +210,13 @@ function macro_printer(intersect_matrix, varnames, txt)
             end
             str = str[1: length(str) - 3]
             if !occursin(" + ", str)
-                new_names["y" * "$row_index"] = split(str, "= ")[2] 
+                trivial_names["y" * "$row_index"] = split(str, "= ")[2] 
             end
             print(io, str)
             print(io, "\n")
         end
     end
-    return new_names
+    return trivial_names
 end
 
 function new_poly_printer(new_poly, txt)
@@ -225,11 +238,11 @@ function get_new_matrix(matrix_txt, is_model)
     intersect_matrix = intersection_calc(parsed_matrix)
     new_matrix_printer(intersect_matrix, matrix_txt)
     if is_model == "fceri"
-        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+        trivial_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
     elseif is_model == "Barua"
-        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+        trivial_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     else
-        new_names = Dict()
+        trivial_names = Dict()
     end
 end
 
@@ -241,13 +254,13 @@ function get_new_poly(matrix_txt, poly_txt, is_model)
     
     old_poly_system= parse_polynomial(poly_txt)
     if is_model == "fceri"
-        new_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
+        trivial_names = macro_printer(intersect_matrix, "fceri/fceri_varnames.txt", matrix_txt)
     elseif is_model == "Barua"
-        new_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
+        trivial_names = macro_printer(intersect_matrix, "Barua/Barua_varnames.txt", matrix_txt)
     else
-        new_names = Dict()
+        trivial_names = Dict()
     end
-    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system)
+    new_poly = poly_calc(cob_matrix, cob_matrix_inverse, old_poly_system, trivial_names)
     new_poly_printer(new_poly, poly_txt)
 end
 
